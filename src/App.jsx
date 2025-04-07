@@ -8,8 +8,10 @@ function App() {
 
   return (
     <>
-      <div></div>
-      <h1>Project Exam 2</h1>
+      <div className="bg-blue-200">
+        <h1>Project Exam 2</h1>
+        <h1>Project Exam 2</h1>
+      </div>
     </>
   );
 }
