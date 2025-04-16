@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/MainLayout";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import CustomerRegister from "./pages/register/CustomerRegister";
+import Customer from "./pages/register/Customer";
 import Profile from "./pages/profile/Profile";
-import ManagerRegister from "./pages/register/ManagerRegister";
+import Manager from "./pages/register/Manager";
 import NotFound from "./pages/notFound/NotFound";
 import VenueManager from "./pages/venueManager/VenueManager";
 
@@ -15,8 +15,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="Login" element={<Login />} />
-          <Route path="CustomerRegister" element={<CustomerRegister />} />
-          <Route path="ManagerRegister" element={<ManagerRegister />} />
+          <Route path="/register/Customer" element={<Customer />} />
+          <Route path="/register/Manager" element={<Manager />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="VenueManager" element={<VenueManager />} />
           <Route path="*" element={<NotFound />} />

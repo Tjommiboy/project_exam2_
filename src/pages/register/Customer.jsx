@@ -1,4 +1,4 @@
-function CustomerRegister() {
+function Customer() {
   return (
     <main>
       <div>
@@ -9,4 +9,4 @@ function CustomerRegister() {
   );
 }
 
-export default CustomerRegister;
+export default Customer;

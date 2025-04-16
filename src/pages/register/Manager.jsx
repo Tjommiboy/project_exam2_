@@ -1,4 +1,4 @@
-function ManagerRegister() {
+function Manager() {
   return (
     <main>
       <div>
@@ -10,4 +10,4 @@ function ManagerRegister() {
     </main>
   );
 }
-export default ManagerRegister;
+export default Manager;
