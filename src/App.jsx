@@ -7,6 +7,7 @@ import Profile from "./pages/profile/Profile";
 import Manager from "./pages/register/Manager";
 import NotFound from "./pages/notFound/NotFound";
 import VenueManager from "./pages/venueManager/VenueManager";
+import CreateVenue from "./pages/createVenue/CreateVenue";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/register/Manager" element={<Manager />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="VenueManager" element={<VenueManager />} />
+          <Route path="createVenue" element={<CreateVenue />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
