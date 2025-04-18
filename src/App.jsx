@@ -8,6 +8,7 @@ import Manager from "./pages/register/Manager";
 import NotFound from "./pages/notFound/NotFound";
 import VenueManager from "./pages/venueManager/VenueManager";
 import CreateVenue from "./pages/createVenue/CreateVenue";
+import SingleVenue from "./pages/singleVenue/SingleVenue";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="Profile" element={<Profile />} />
           <Route path="VenueManager" element={<VenueManager />} />
           <Route path="createVenue" element={<CreateVenue />} />
+          <Route path="singleVenue/:id" element={<SingleVenue />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

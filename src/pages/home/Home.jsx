@@ -26,7 +26,7 @@ function Home() {
   return (
     <div className="container mx-auto justify-center px-4">
       <h1 className="mt-20 bg-amber-500 text-center text-1xl font-bold py-4 rounded">
-        SearchBarrr
+        SearchBar
       </h1>
       {venues.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
