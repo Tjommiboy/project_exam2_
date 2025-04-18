@@ -1,7 +1,7 @@
 function Profile() {
   return (
-    <div>
-      <h1>Profile</h1>
+    <div className="container m-auto justify-center">
+      <h1 className="mt-20 bg-amber-200">Profile</h1>
       <p>This is the profile page.</p>
     </div>
   );

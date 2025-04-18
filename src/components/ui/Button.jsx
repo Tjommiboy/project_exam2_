@@ -1,13 +1,27 @@
-function Button({ children, onClick, type = "button", className = "" }) {
+function Button({
+  children,
+  onClick,
+  type = "button",
+  className = "",
+  variant = "ghost",
+}) {
+  let baseStyles = "px-4 py-2 rounded-md font-semibold transition";
+
+  let variantStyles = {
+    primary: "bg-[#4E928A] text-white hover:bg-[#3b756e]",
+    outline:
+      "bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#e0f2f1]",
+    ghost: "bg-transparent text-[#4E928A] hover:bg-[#e0f2f1]",
+  };
+
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`px-4 py-2 rounded-md font-semibold text-white bg-[#4E928A] hover:bg-[#3b756e] transition ${className}`}
+      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
     >
       {children}
     </button>
   );
 }
-
 export default Button;

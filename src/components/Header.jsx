@@ -9,7 +9,7 @@ function Header() {
   };
 
   const handleRegister = () => {
-    navigate("/register");
+    navigate("/register/Customer");
   };
   const handleProfile = () => {
     navigate("/profile");
@@ -19,16 +19,20 @@ function Header() {
   };
 
   return (
-    <header className="bg-[#4E928A] px-6 py-4">
-      <div className="flex justify-between items-center">
-        <Link to="/">
-          <h1 className="text-white text-xl font-bold">Holidaze</h1>
-        </Link>
-        <div className="flex gap-4">
-          <Button onClick={handleCreateVenue}>Create Venue</Button>
-          <Button onClick={handleProfile}>Profile</Button>
-          <Button onClick={handleLogin}>Login</Button>
-          <Button onClick={handleRegister}>Register</Button>
+    <header>
+      <div className="  bg-[#4E928A] px-6 py-4">
+        <div className=" flex justify-between items-center">
+          <Link to="/">
+            <h1 className="text-white text-xl font-bold">Holidaze</h1>
+          </Link>
+          <div className="flex gap-2">
+            <Button variant="ghost" onClick={handleCreateVenue}>
+              Create Venue
+            </Button>
+            <Button onClick={handleProfile}>Profile</Button>
+            <Button onClick={handleLogin}>Login</Button>
+            <Button onClick={handleRegister}>Register</Button>
+          </div>
         </div>
       </div>
     </header>

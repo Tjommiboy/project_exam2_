@@ -1,9 +1,9 @@
 function Login() {
   return (
-    <main>
-      <h1>Welcome to the Login Page</h1>
+    <div className="container m-auto justify-center">
+      <h1 className="mt-20 bg-amber-200">Welcome to the Login Page</h1>
       <p>This is the main content of the Login page.</p>
-    </main>
+    </div>
   );
 }
 
