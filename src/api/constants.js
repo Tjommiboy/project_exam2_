@@ -7,4 +7,4 @@ export const SINGLEBOOKINGS = `${API_BASE}/holidaze/bookings/<id>`;
 //Venues
 
 export const ALLVENUES = `${API_BASE}/venues`;
-export const SINGLEVENUES = `${API_BASE}/venues/<id>`;
+export const SINGLEVENUES = `${API_BASE}/venues`;
