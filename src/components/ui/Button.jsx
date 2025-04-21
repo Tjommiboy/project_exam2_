@@ -5,20 +5,25 @@ function Button({
   className = "",
   variant = "ghost",
 }) {
-  let baseStyles = "px-4 py-2 rounded-md font-semibold transition";
+  const baseStyles = "px-4 py-2 rounded-md font-semibold transition";
 
-  let variantStyles = {
+  const variantStyles = {
     primary: "bg-[#4E928A] text-white hover:bg-[#3b756e]",
     outline:
       "bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#e0f2f1]",
-    ghost: "bg-transparent text-[#4E928A] hover:bg-[#e0f2f1]",
+    ghost:
+      "bg-transparent text-[#e0f2f1] hover:bg-[#e0f2f1] hover:text-[#4E928A] ",
   };
+
+  const fallbackVariant = "ghost";
 
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
+      className={`${baseStyles} ${
+        variantStyles[variant] || variantStyles[fallbackVariant]
+      } ${className}`}
     >
       {children}
     </button>

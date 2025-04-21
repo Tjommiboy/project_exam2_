@@ -52,24 +52,26 @@ const SingleVenue = () => {
             <img
               src={venue.data.media?.[0]?.url}
               alt={venue.data.media?.[0]?.alt || venue.name}
-              className="w-full max-w-md rounded mb-4"
+              className="w-full h-[400px] object-cover rounded-t-lg mb-4"
             />
-            <h2 className="text-gray-700 font mb-2 ">{venue.data.name}</h2>
-            <p className="text-gray-500">{venue.data.description}</p>
-            <p className="text-gray-500">{venue.data.maxGuests}</p>
-            <p className="text-gray-500">{venue.data.location.city}</p>
-            <p className="text-gray-500">{venue.data.location.country}</p>
-            <p className="text-gray-500">{venue.data.price}</p>
-            <p className="text-gray-500">{venue.data.rating}</p>
-            <p className="text-gray-500">{venue.data.reviews}</p>
-            <ul className="flextext-sm text-gray-500">
-              <li>Wi-Fi: {venue.meta.wifi ? "✅" : "❌"}</li>
-              <li>Parking: {venue.meta.parking ? "✅" : "❌"}</li>
-              <li>Breakfast: {venue.meta.breakfast ? "✅" : "❌"}</li>
-              <li>Pets: {venue.meta.pets ? "✅" : "❌"}</li>
-            </ul>
-
-            {/* Add more venue details as needed */}
+            <div className="p-4">
+              <h2 className="text-3xl text-gray-700 font mb-2 ">
+                {venue.data.name}
+              </h2>
+              <p className="text-gray-500">{venue.data.description}</p>
+              <p className="text-gray-500">{venue.data.maxGuests}</p>
+              <p className="text-gray-500">{venue.data.location.city}</p>
+              <p className="text-gray-500">{venue.data.location.country}</p>
+              <p className="text-gray-500">{venue.data.price}</p>
+              <p className="text-gray-500">{venue.data.rating}</p>
+              <p className="text-gray-500">{venue.data.reviews}</p>
+              <ul className="flextext-sm text-gray-500">
+                <li>Wi-Fi: {venue.meta.wifi ? "✅" : "❌"}</li>
+                <li>Parking: {venue.meta.parking ? "✅" : "❌"}</li>
+                <li>Breakfast: {venue.meta.breakfast ? "✅" : "❌"}</li>
+                <li>Pets: {venue.meta.pets ? "✅" : "❌"}</li>
+              </ul>
+            </div>
           </div>
           <div className="bg-amber-50 flex justify-center  p-6 rounded-lg">
             <div className="bg-white p-6 rounded shadow-md w-80 text-sm">
@@ -81,11 +83,13 @@ const SingleVenue = () => {
                     value={checkInDate}
                     onChange={(e) => setCheckInDate(e.target.value)}
                   />
+
                   <input
                     type="date"
                     className="border p-2 rounded w-full"
                     value={checkOutDate}
                     onChange={(e) => setCheckOutDate(e.target.value)}
+                    min={checkInDate}
                   />
                 </div>
                 <input
