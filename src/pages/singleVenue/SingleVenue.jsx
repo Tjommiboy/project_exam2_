@@ -1,8 +1,10 @@
-function SingleVenue() {
-  return (
-    <div>
-      <h1>Single Venue</h1>
-    </div>
-  );
-}
+import React from "react";
+import { useState, useEffect } from "react";
+
+const SingleVenue = () => {
+  const [venue, setVenue] = useState(null);
+
+  return <div>SingleVenue</div>;
+};
+
 export default SingleVenue;

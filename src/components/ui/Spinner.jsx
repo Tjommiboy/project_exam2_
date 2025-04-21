@@ -1,6 +1,5 @@
 import React from "react";
-import RiseLoader from "react-spinners/RiseLoader";
-import { css } from "@emotion/react";
+import ClockLoader from "react-spinners/ClockLoader";
 
 const override = {
   display: "block",
@@ -9,11 +8,11 @@ const override = {
 
 const Spinner = ({ loading }) => {
   return (
-    <RiseLoader
-      color="#6366F1"
+    <ClockLoader
+      color="#4E928A"
       loading={loading}
       cssOverride={override}
-      size={20}
+      size={100}
     />
   );
 };
