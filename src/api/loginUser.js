@@ -1,18 +1,19 @@
 import { LOGIN } from "./constants";
 
-export async function loginUser(email, password) {
+export async function loginUser(payload) {
   const response = await fetch(`${LOGIN}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(email, password),
+    body: JSON.stringify(payload),
   });
 
   const data = await response.json();
-
+  console.log("Login data:", data);
   if (!response.ok) {
     throw new Error(data.message || "Login failed.");
   }
+
   return data;
 }

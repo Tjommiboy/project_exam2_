@@ -23,10 +23,9 @@ const Login = () => {
     try {
       const response = await loginUser(formData);
 
-      // ✅ Save the token and user data
-      localStorage.setItem("accessToken", response.accessToken);
-      localStorage.setItem("userName", response.name);
-      localStorage.setItem("email", response.email);
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("userName", response.data.name);
+      localStorage.setItem("email", response.data.email);
 
       toast.success("Login was successful!", {
         onClose: () => (window.location.href = "/"),
