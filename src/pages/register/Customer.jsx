@@ -1,15 +1,13 @@
 import React, { useState } from "react";
+import { registerUser } from "../../api/registerUser";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    bio: "",
-    avatarUrl: "",
-    avatarAlt: "",
-    bannerUrl: "",
-    bannerAlt: "",
   });
 
   const [userType, setUserType] = useState("user"); // "user" or "venue"
@@ -26,82 +24,23 @@ const RegisterForm = () => {
     setLoading(true);
     setMessage("");
 
-    // Prepare the registration payload
     const payload = {
       name: formData.name,
       email: formData.email,
       password: formData.password,
     };
 
-    // Include venueManager only when the user is registering as a venue manager
     if (userType === "venue") {
       payload.venueManager = true;
     }
 
-    // Optional fields
-    if (formData.bio) payload.bio = formData.bio;
-    if (formData.avatarUrl || formData.avatarAlt) {
-      payload.avatar = {
-        url: formData.avatarUrl,
-        alt: formData.avatarAlt,
-      };
-    }
-    if (formData.bannerUrl || formData.bannerAlt) {
-      payload.banner = {
-        url: formData.bannerUrl,
-        alt: formData.bannerAlt,
-      };
-    }
-
     try {
-      // Step 1: Register the user (No token yet)
-      const registerResponse = await fetch(
-        "https://api.noroff.dev/api/v1/holidaze/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      const registerResult = await registerResponse.json();
-
-      if (!registerResponse.ok) {
-        throw new Error(
-          registerResult.message || "Something went wrong during registration."
-        );
-      }
-
-      // Step 2: Log in and get the access token
-      const loginResponse = await fetch(
-        "https://api.noroff.dev/api/v1/holidaze/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-          }),
-        }
-      );
-
-      const loginResult = await loginResponse.json();
-
-      if (!loginResponse.ok) {
-        throw new Error(loginResult.message || "Login failed.");
-      }
-
-      const accessToken = loginResult.accessToken;
-
-      // After successful registration, login
-      alert("Registration successful!");
-      window.location.href = "/login"; // Redirect to login page
+      await registerUser(payload);
+      toast.success("Registration successful!", {
+        onClose: () => (window.location.href = "/login"),
+      });
     } catch (error) {
-      setMessage("Error: " + error.message);
+      toast.error("Error: " + error.message);
     } finally {
       setLoading(false);
     }
@@ -109,10 +48,11 @@ const RegisterForm = () => {
 
   return (
     <div className="max-w-md mx-auto p-4">
+      <ToastContainer position="top-center" autoClose={3000} />
       <div className="flex justify-center mb-4 ">
         <button
           onClick={() => setUserType("user")}
-          className={`px-4 py-2 rounded-l text-gray-500 mr-2 ${
+          className={`px-4 py-2 rounded-l text-[#4E928A] mr-2 ${
             userType === "user" ? "bg-[#4E928A] text-white" : "bg-gray-100"
           }`}
         >
@@ -120,7 +60,7 @@ const RegisterForm = () => {
         </button>
         <button
           onClick={() => setUserType("venue")}
-          className={`px-4 py-2 rounded-r text-gray-500 ${
+          className={`px-4 py-2 rounded-r text-[#4E928A] ${
             userType === "venue" ? "bg-[#4E928A] text-white" : "bg-gray-200"
           }`}
         >
@@ -157,45 +97,9 @@ const RegisterForm = () => {
           value={formData.password}
           onChange={handleChange}
           required
+          pattern="^(?=.*\d).{8,}$"
+          title="Password must be at least 8 characters long and include at least one number."
           className="block w-full mb-2 p-2 border rounded text-gray-500"
-        />
-
-        <textarea
-          name="bio"
-          placeholder="Bio (optional)"
-          value={formData.bio}
-          onChange={handleChange}
-          className="block w-full mb-2 p-2 border rounded  text-gray-500"
-        />
-
-        <input
-          name="avatarUrl"
-          placeholder="Avatar URL"
-          value={formData.avatarUrl}
-          onChange={handleChange}
-          className="block w-full mb-2 p-2 border rounded  text-gray-500"
-        />
-        <input
-          name="avatarAlt"
-          placeholder="Avatar Alt Text"
-          value={formData.avatarAlt}
-          onChange={handleChange}
-          className="block w-full mb-2 p-2 border rounded  text-gray-500"
-        />
-
-        <input
-          name="bannerUrl"
-          placeholder="Banner URL"
-          value={formData.bannerUrl}
-          onChange={handleChange}
-          className="block w-full mb-2 p-2 border rounded  text-gray-500"
-        />
-        <input
-          name="bannerAlt"
-          placeholder="Banner Alt Text"
-          value={formData.bannerAlt}
-          onChange={handleChange}
-          className="block w-full mb-4 p-2 border rounded  text-gray-500"
         />
 
         <button
