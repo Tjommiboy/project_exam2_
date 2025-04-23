@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { loginUser } from "../../api/loginUser";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { save } from "../../storage/save";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -23,9 +24,9 @@ const Login = () => {
     try {
       const response = await loginUser(formData);
 
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("userName", response.data.name);
-      localStorage.setItem("email", response.data.email);
+      save("accessToken", response.data.accessToken);
+      save("userName", response.data.name);
+      save("email", response.data.email);
 
       toast.success("Login was successful!", {
         onClose: () => (window.location.href = "/"),
