@@ -3,6 +3,12 @@ import { useState, useEffect } from "react";
 import { SINGLEVENUES } from "../../api/constants";
 import { useParams } from "react-router-dom";
 import Spinner from "../../components/ui/Spinner";
+import {
+  FaWifi,
+  FaParking,
+  FaRegCheckCircle,
+  FaRegTimesCircle,
+} from "react-icons/fa";
 
 const SingleVenue = () => {
   const [venue, setVenue] = useState(null);
@@ -11,6 +17,7 @@ const SingleVenue = () => {
   const [nights, setNights] = useState(0);
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
+  const [guests, setGuests] = useState(1);
 
   const pricePerNight = venue?.data?.price || 0;
   const totalPrice = pricePerNight * nights;
@@ -43,7 +50,7 @@ const SingleVenue = () => {
   }, []);
 
   return (
-    <div className="flex  min-h-screen">
+    <div className="flex min-h-screen">
       {loading ? (
         <Spinner />
       ) : venue ? (
@@ -55,22 +62,82 @@ const SingleVenue = () => {
               className="w-full h-[400px] object-cover rounded-t-lg mb-4"
             />
             <div className="p-4">
-              <h2 className="text-3xl text-gray-700 font mb-2 ">
-                {venue.data.name}
-              </h2>
-              <p className="text-gray-500">{venue.data.description}</p>
-              <p className="text-gray-500">{venue.data.maxGuests}</p>
-              <p className="text-gray-500">{venue.data.location.city}</p>
-              <p className="text-gray-500">{venue.data.location.country}</p>
-              <p className="text-gray-500">{venue.data.price}</p>
-              <p className="text-gray-500">{venue.data.rating}</p>
-              <p className="text-gray-500">{venue.data.reviews}</p>
-              <ul className="flextext-sm text-gray-500">
-                <li>Wi-Fi: {venue.meta.wifi ? "✅" : "❌"}</li>
-                <li>Parking: {venue.meta.parking ? "✅" : "❌"}</li>
-                <li>Breakfast: {venue.meta.breakfast ? "✅" : "❌"}</li>
-                <li>Pets: {venue.meta.pets ? "✅" : "❌"}</li>
-              </ul>
+              <div className="flex justify-between">
+                <div>
+                  <h2 className="text-3xl text-gray-700 font mb-2 ">
+                    {venue.data.name}
+                  </h2>
+                  <h3 className=" text-gray-500 ml-1 ">About Venue:</h3>
+                  <p className=" text-gray-500 w-[500px]">
+                    {venue.data.description}
+                  </p>
+                </div>
+                <div>
+                  <label
+                    className="text-sm font-semibold text-gray-700 mb-2 mt-2"
+                    htmlFor="Location"
+                  >
+                    Location:
+                  </label>
+                  <div className="flex justify-between m-2">
+                    <p className="text-gray-500">
+                      City:{venue.data.location.city}
+                    </p>
+                    <p className="text-gray-500">
+                      Country:{venue.data.location.country}
+                    </p>
+                  </div>
+                  <label
+                    className="text-sm font-semibold text-gray-700 mb-2 mt-2"
+                    htmlFor="Max Guests"
+                  >
+                    Max Guests:
+                  </label>
+                  <div className="flex justify-between m-2">
+                    <p className="text-gray-500">
+                      Visitors: {venue.data.maxGuests}
+                    </p>
+                  </div>
+
+                  <p className="text-sm font-semibold text-gray-700 mb-2 mt-2">
+                    Amenities:
+                  </p>
+                  <ul className="flex text-sm text-gray-500">
+                    <li className="m-2">
+                      Wi-Fi:{" "}
+                      {venue.data.meta.wifi ? (
+                        <FaWifi className="text-lg text-green-500" />
+                      ) : (
+                        <FaRegTimesCircle className="text-lg text-red-500" />
+                      )}
+                    </li>
+                    <li className="m-2">
+                      Parking:{" "}
+                      {venue.data.meta.parking ? (
+                        <FaRegCheckCircle className="text-lg text-green-500" />
+                      ) : (
+                        <FaRegTimesCircle className="text-lg text-red-500" />
+                      )}
+                    </li>
+                    <li className="m-2">
+                      Breakfast:{" "}
+                      {venue.data.meta.breakfast ? (
+                        <FaRegCheckCircle className="text-lg text-green-500" />
+                      ) : (
+                        <FaRegTimesCircle className="text-lg text-red-500" />
+                      )}
+                    </li>
+                    <li className="m-2">
+                      Pets:{" "}
+                      {venue.data.meta.pets ? (
+                        <FaRegCheckCircle className="text-lg text-green-500" />
+                      ) : (
+                        <FaRegTimesCircle className="text-lg text-red-500" />
+                      )}
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div className="bg-amber-50 flex justify-center  p-6 rounded-lg">
@@ -92,12 +159,20 @@ const SingleVenue = () => {
                     min={checkInDate}
                   />
                 </div>
+                <label
+                  htmlFor="Guests"
+                  className="block  text-gray-500 font-medium"
+                >
+                  Guests:
+                </label>
                 <input
                   type="number"
                   min="1"
-                  placeholder="GUESTS"
+                  max={venue.data.maxGuests} // <-- This makes sure users can't select more than allowed
+                  placeholder="Guests"
                   className="border p-2 rounded text-gray-500 w-full"
-                  defaultValue={2}
+                  value={guests}
+                  onChange={(e) => setGuests(Number(e.target.value))}
                 />
                 <div className="p-4 bg-amber-50 max-w-md mx-auto rounded">
                   <label
