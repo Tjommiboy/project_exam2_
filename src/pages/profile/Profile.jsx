@@ -3,7 +3,7 @@ import { getProfile, updateProfile } from "../../api/profileUser";
 import ProfileDetails from "../../components/ui/ProfileDetails";
 import ProfileUpdateForm from "../../components/ui/ProfileUpdateForm";
 import ProfileModal from "../../components/ui/ProfileUpdateModal";
-import Spinner from "../../components/ui/Spinner";
+
 import { loadProfile } from "../../storage/loadProfile";
 import { loadToken } from "../../storage/loadProfile";
 
@@ -31,6 +31,8 @@ const Profile = () => {
         }
       } catch (error) {
         console.error("Error fetching profile:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProfile();
@@ -47,12 +49,11 @@ const Profile = () => {
     setIsModalOpen(false);
   };
 
-  if (!profile) return <p>Loading...</p>;
-
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">My Profile</h1>
-      <ProfileDetails profile={profile} />
+      <ProfileDetails profile={profile} loading={loading} />
+
       <button
         className="mt-4 px-4 py-2 bg-blue-400 text-white rounded"
         onClick={() => setIsModalOpen(true)}
