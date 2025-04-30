@@ -17,3 +17,4 @@ export const API_KEY = import.meta.env.VITE_API_KEY;
 //Profiles
 
 export const PROFILE = `${API_BASE}/holidaze/profiles/`;
+export const UPDATE_PROFILE = `${API_BASE}/holidaze/profiles/`;
