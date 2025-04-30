@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { searchVenues } from "../../api/searchVenues";
-// Make sure to import the searchVenues function if it's in another file
-// import { searchVenues } from './path_to_your_searchVenues_function';
 
 const SearchBar = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,9 +21,7 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      // Check that the search query is not empty
-      // Call the function that performs the search
-      onSearch(searchQuery); // Use the passed 'onSearch' prop if needed
+      onSearch(searchQuery);
     } else {
       console.log("Please enter a search term.");
     }
@@ -39,7 +35,7 @@ const SearchBar = ({ onSearch }) => {
           {/* Filter Dropdown */}
           <button
             onClick={toggleDropdown}
-            className="rounded bg-[#4E928A] border-[#4E928A] ml-2 text-bold"
+            className="rounded bg-[#4E928A] border-[#4E928A] text-bold"
           >
             <span>{selectedFilter}</span>
             <svg
@@ -57,7 +53,7 @@ const SearchBar = ({ onSearch }) => {
             </svg>
           </button>
           <div
-            className={`min-w-[150px] border-[#4E928A] left-0 mt-10 ${
+            className={`min-w-[150px] border-[#4E928A] mt-1 ${
               isDropdownVisible ? "" : "hidden"
             } bg-white border rounded-md`}
           >

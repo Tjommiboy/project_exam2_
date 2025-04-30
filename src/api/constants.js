@@ -9,3 +9,7 @@ export const SINGLEBOOKINGS = `${API_BASE}/holidaze/bookings/<id>`;
 export const ALLVENUES = `${API_BASE}/holidaze/venues`;
 export const SINGLEVENUES = `${API_BASE}/holidaze/venues`;
 export const SEARCH = `${API_BASE}/holidaze/venues/search?q=<query>`;
+
+//API KEY
+
+export const API_KEY = import.meta.env.VITE_API_KEY;

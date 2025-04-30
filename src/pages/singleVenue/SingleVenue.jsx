@@ -28,7 +28,7 @@ const SingleVenue = () => {
       const diffTime = checkOut - checkIn;
 
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      setNights(diffDays > 0 ? diffDays : 0); // Prevent negative nights
+      setNights(diffDays > 0 ? diffDays : 0);
     }
   }, [checkInDate, checkOutDate]);
 
