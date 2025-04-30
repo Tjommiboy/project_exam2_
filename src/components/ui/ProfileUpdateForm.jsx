@@ -10,34 +10,38 @@ const ProfileUpdateForm = ({ profile, onUpdate }) => {
     onUpdate({ bio, avatar, banner });
   };
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-amber-100">
       <div>
-        <label className="block text-sm font-medium">Bio</label>
+        <label className="block text-sm font-medium text-black">Bio</label>
         <textarea
           value={bio}
           onChange={(e) => setBio(e.target.value)}
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded  text-black"
         />
       </div>
       <div>
-        <label className="block text-sm font-medium">Avatar URL</label>
+        <label className="block text-sm font-medium  text-black">
+          Avatar URL
+        </label>
         <input
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded  text-black"
         />
       </div>
       <div>
-        <label className="block text-sm font-medium">Banner URL</label>
+        <label className="block text-sm font-medium  text-black">
+          Banner URL
+        </label>
         <input
           value={banner}
           onChange={(e) => setBanner(e.target.value)}
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded  text-black"
         />
       </div>
       <button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className="bg-blue-600 text-white px-4 py-2 rounded  text-black"
       >
         Save
       </button>

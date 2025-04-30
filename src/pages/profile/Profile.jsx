@@ -6,24 +6,35 @@ import ProfileModal from "../../components/ui/ProfileUpdateModal";
 import Spinner from "../../components/ui/Spinner";
 import { loadProfile } from "../../storage/loadProfile";
 import { loadToken } from "../../storage/loadProfile";
-import { API_KEY } from "../../api/constants";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
-  // const [loading, setLoading] = useState(true);
-  Const[(isModalOpen, setIsModalOpen)] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const token = loadToken();
   const profileData = loadProfile();
-  const apiKey = `${API_KEY}`;
+  const name = profileData?.name;
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const data = await getProfile(name, token, apiKey);
-      setProfile(data.data);
+      try {
+        const data = await getProfile(name, token);
+
+        if (data && data.data) {
+          setProfile(data.data);
+        } else {
+          console.error(
+            "Profile fetch failed or returned unexpected structure:",
+            data
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
     };
     fetchProfile();
-  })[(name, token, apiKey)];
+  }, [name, token]);
 
   const handleUpdate = async (formData) => {
     const updatedData = {
@@ -31,7 +42,7 @@ const Profile = () => {
       avatar: { url: formData.avatar, alt: "User avatar" },
       banner: { url: formData.banner, alt: "User banner" },
     };
-    const updated = await updateProfile(name, token, apiKey, updatedData);
+    const updated = await updateProfile(name, token, updatedData);
     setProfile(updated.data);
     setIsModalOpen(false);
   };
@@ -43,7 +54,7 @@ const Profile = () => {
       <h1 className="text-2xl font-bold mb-4">My Profile</h1>
       <ProfileDetails profile={profile} />
       <button
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+        className="mt-4 px-4 py-2 bg-blue-400 text-white rounded"
         onClick={() => setIsModalOpen(true)}
       >
         Edit Profile

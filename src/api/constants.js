@@ -16,5 +16,5 @@ export const SEARCH = `${API_BASE}/holidaze/venues/search?q=<query>`;
 
 //Profiles
 
-export const PROFILE = `${API_BASE}/holidaze/profiles/`;
-export const UPDATE_PROFILE = `${API_BASE}/holidaze/profiles/`;
+export const PROFILE = `${API_BASE}/holidaze/profiles`;
+export const UPDATE_PROFILE = `${API_BASE}/holidaze/profiles`;

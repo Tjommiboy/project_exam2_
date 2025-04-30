@@ -10,7 +10,7 @@ const RegisterForm = () => {
     password: "",
   });
 
-  const [userType, setUserType] = useState("user"); // "user" or "venue"
+  const [userType, setUserType] = useState("user");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 

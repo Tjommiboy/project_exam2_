@@ -23,10 +23,8 @@ const Login = () => {
 
     try {
       const response = await loginUser(formData);
-
       save("accessToken", response.data.accessToken);
-      save("userName", response.data.name);
-      save("email", response.data.email);
+      save("profile", { name: response.data.name, email: response.data.email });
 
       toast.success("Login was successful!", {
         onClose: () => (window.location.href = "/"),

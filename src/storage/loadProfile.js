@@ -7,4 +7,4 @@ const load = (key) => {
 };
 
 export const loadProfile = () => load("profile");
-export const loadToken = () => load("token");
+export const loadToken = () => load("accessToken");
