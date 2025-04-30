@@ -1,10 +1,60 @@
-function Profile() {
+import { useEffect, useState } from "react";
+import { getProfile, updateProfile } from "../../api/profileUser";
+import ProfileDetails from "../../components/ui/ProfileDetails";
+import ProfileUpdateForm from "../../components/ui/ProfileUpdateForm";
+import ProfileModal from "../../components/ui/ProfileUpdateModal";
+import Spinner from "../../components/ui/Spinner";
+import { loadProfile } from "../../storage/loadProfile";
+import { loadToken } from "../../storage/loadProfile";
+import { API_KEY } from "../../api/constants";
+
+const Profile = () => {
+  const [profile, setProfile] = useState(null);
+  // const [loading, setLoading] = useState(true);
+  Const[(isModalOpen, setIsModalOpen)] = useState(false);
+
+  const token = loadToken();
+  const profileData = loadProfile();
+  const apiKey = `${API_KEY}`;
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const data = await getProfile(name, token, apiKey);
+      setProfile(data.data);
+    };
+    fetchProfile();
+  })[(name, token, apiKey)];
+
+  const handleUpdate = async (formData) => {
+    const updatedData = {
+      bio: formData.bio,
+      avatar: { url: formData.avatar, alt: "User avatar" },
+      banner: { url: formData.banner, alt: "User banner" },
+    };
+    const updated = await updateProfile(name, token, apiKey, updatedData);
+    setProfile(updated.data);
+    setIsModalOpen(false);
+  };
+
+  if (!profile) return <p>Loading...</p>;
+
   return (
-    <div className="container m-auto justify-center">
-      <h1 className="mt-20 bg-amber-200">Profile</h1>
-      <p>This is the profile page.</p>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">My Profile</h1>
+      <ProfileDetails profile={profile} />
+      <button
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Edit Profile
+      </button>
+
+      <ProfileModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2 className="text-xl font-semibold mb-4">Edit Profile</h2>
+        <ProfileUpdateForm profile={profile} onUpdate={handleUpdate} />
+      </ProfileModal>
     </div>
   );
-}
+};
 
 export default Profile;

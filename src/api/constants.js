@@ -1,3 +1,7 @@
+//API KEY
+
+export const API_KEY = import.meta.env.VITE_API_KEY;
+
 const API_BASE = "https://v2.api.noroff.dev";
 export const REGISTER = `${API_BASE}/auth/register`;
 export const LOGIN = `${API_BASE}/auth/login`;
@@ -9,10 +13,6 @@ export const SINGLEBOOKINGS = `${API_BASE}/holidaze/bookings/<id>`;
 export const ALLVENUES = `${API_BASE}/holidaze/venues`;
 export const SINGLEVENUES = `${API_BASE}/holidaze/venues`;
 export const SEARCH = `${API_BASE}/holidaze/venues/search?q=<query>`;
-
-//API KEY
-
-export const API_KEY = import.meta.env.VITE_API_KEY;
 
 //Profiles
 
