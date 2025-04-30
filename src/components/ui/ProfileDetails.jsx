@@ -1,13 +1,20 @@
 const ProfileDetails = ({ profile }) => {
   return (
-    <div className="bg-amber-100 p-4 rounded shadow">
-      <img
-        src={profile.avatar?.url}
-        alt={profile.avatar?.alt || "Avatar"}
-        className="w-24 h-24 rounded-full mb-4"
-      />
-      <h2 className="text-xl font-bold text-black">{profile.name}</h2>
-      <p className="text-black">{profile.bio}</p>
+    <div className="flex">
+      <div className="flex  bg-amber-50 rounded-bl-[100px] rounded-tr-[100px]  shadow">
+        <img
+          src={profile.avatar?.url}
+          alt={profile.avatar?.alt || "Avatar"}
+          className="w-46 h-60 rounded-bl-[100px] "
+        />
+        <div className="m-4">
+          <h2 className="text-xl font-bold text-black">{profile.name}</h2>
+          <p className="text-black w-90">{profile.bio}</p>
+        </div>
+      </div>
+      <div>
+        <p className="text-black">my info</p>
+      </div>
     </div>
   );
 };
