@@ -13,3 +13,7 @@ export const SEARCH = `${API_BASE}/holidaze/venues/search?q=<query>`;
 //API KEY
 
 export const API_KEY = import.meta.env.VITE_API_KEY;
+
+//Profiles
+
+export const PROFILE = `${API_BASE}/holidaze/profiles/`;
