@@ -50,7 +50,9 @@ function Home() {
 
   return (
     <div className="container mx-auto justify-center px-4">
-      <SearchBar onSearch={debouncedSearch} />
+      <div className="flex justify-center">
+        <SearchBar onSearch={debouncedSearch} />
+      </div>
       {/* Show a loading spinner while fetching initial venues */}
       {loading && !searchLoading ? (
         <div className="flex justify-center mt-8">

@@ -28,22 +28,21 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="w-full mx-auto max-w-sm min-w-[200px] mb-10">
-      <div className="relative mt-2">
-        {/* Flex container for the elements */}
-        <div className="flex items-center space-x-4">
-          {/* Filter Dropdown */}
+    <div className="">
+      <div className="flex gap-2 items-start relative">
+        {/* Filter Dropdown Button and Menu */}
+        <div className="relative">
           <button
             onClick={toggleDropdown}
-            className="rounded bg-[#4E928A] border-[#4E928A] text-bold"
+            className="flex items-center gap-1 px-3 py-2 rounded bg-[#4E928A] border border-[#4E928A] text-white text-sm font-semibold"
           >
-            <span>{selectedFilter}</span>
+            <span>{selectedFilter || "Filter"}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="flex h-4 w-4 ml-1 text-amber-100"
+              className="h-4 w-4 text-amber-100"
             >
               <path
                 strokeLinecap="round"
@@ -52,52 +51,52 @@ const SearchBar = ({ onSearch }) => {
               />
             </svg>
           </button>
-          <div
-            className={`min-w-[150px] border-[#4E928A] mt-1 ${
-              isDropdownVisible ? "" : "hidden"
-            } bg-white border rounded-md`}
-          >
-            <ul>
-              <li
-                onClick={() => handleFilterSelect("Location")}
-                className="px-4 py-2 text-sm cursor-pointer text-[#4E928A]"
-              >
-                Location
-              </li>
-              <li
-                onClick={() => handleFilterSelect("Price Range")}
-                className="px-4 py-2 text-sm cursor-pointer text-[#4E928A]"
-              >
-                Price Range
-              </li>
-              <li
-                onClick={() => handleFilterSelect("Availability")}
-                className="px-4 py-2 text-sm cursor-pointer text-[#4E928A]"
-              >
-                Availability
-              </li>
-            </ul>
-          </div>
 
-          {/* Search Input */}
+          {isDropdownVisible && (
+            <div className="absolute left-0 mt-1 min-w-[150px] bg-white border border-[#4E928A] rounded-md z-10 shadow">
+              <ul>
+                <li
+                  onClick={() => handleFilterSelect("Location")}
+                  className="px-4 py-2 text-sm cursor-pointer text-[#4E928A] hover:bg-[#f0fdfa]"
+                >
+                  Location
+                </li>
+                <li
+                  onClick={() => handleFilterSelect("Price Range")}
+                  className="px-4 py-2 text-sm cursor-pointer text-[#4E928A] hover:bg-[#f0fdfa]"
+                >
+                  Price Range
+                </li>
+                <li
+                  onClick={() => handleFilterSelect("Availability")}
+                  className="px-4 py-2 text-sm cursor-pointer text-[#4E928A] hover:bg-[#f0fdfa]"
+                >
+                  Availability
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+
+        {/* Search Field and Button */}
+        <div className="flex gap-2">
           <input
             type="text"
             value={searchQuery}
             onChange={handleSearchInput}
-            className="w-full bg-transparent placeholder:text-slate-400 text-[#4E928A] text-bold border border-[#4E928A] rounded-md px-4 py-2 transition duration-300"
+            className="w-[500px] bg-transparent placeholder:text-slate-400 text-[#4E928A] font-semibold border border-[#4E928A] rounded-md px-4 py-2 transition duration-300"
             placeholder="Search venues..."
           />
 
-          {/* Search Button */}
           <button
             onClick={handleSearch}
-            className="flex items-center rounded bg-[#4E928A] py-1 px-2.5 text-white text-sm transition-all shadow-sm"
+            className="flex items-center gap-1 rounded bg-[#4E928A] py-2 px-3 text-white text-sm transition-all shadow-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
               fill="currentColor"
-              className="w-4 h-4 mr-1.5"
+              className="w-4 h-4"
             >
               <path
                 fillRule="evenodd"
