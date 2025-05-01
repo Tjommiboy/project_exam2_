@@ -51,7 +51,7 @@ const Profile = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">My Profile</h1>
+      <h2 className="text-xl font-bold mb-4 text-[#4E928A]">My Profile</h2>
       <ProfileDetails profile={profile} loading={loading} />
 
       <button

@@ -80,109 +80,117 @@ const CreateVenueForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4 max-w-xl mx-auto">
-      <h2 className="text-xl font-bold text-[#4E928A]">Create Venue</h2>
+    <form
+      onSubmit={handleSubmit}
+      className=" flex space-y-4 p-4 mx-auto bg-[#DFECE6] gap-4"
+    >
+      <div>
+        <h2 className="text-xl font-bold text-[#4E928A]">Create Venue</h2>
 
-      <input
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        placeholder="Venue Name"
-        required
-        className="w-full border px-3 py-2 rounded"
-      />
+        <input
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Venue Name"
+          required
+          className="w-full border color-[#4E928A] text-[#4E928A] px-3 py-2 rounded m-1"
+        />
 
-      <textarea
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-        placeholder="Description"
-        required
-        className="w-full border px-3 py-2 rounded"
-      />
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          placeholder="Description"
+          required
+          className="w-full color-[#4E928A] text-[#4E928A] border px-3 py-2 rounded m-1"
+        />
 
-      <input
-        name="media.url"
-        value={formData.media[0].url}
-        onChange={handleChange}
-        placeholder="Image URL"
-        className="w-full border px-3 py-2 rounded"
-      />
-      <input
-        name="media.alt"
-        value={formData.media[0].alt}
-        onChange={handleChange}
-        placeholder="Image Alt Text"
-        className="w-full border px-3 py-2 rounded"
-      />
+        <input
+          name="media.url"
+          value={formData.media[0].url}
+          onChange={handleChange}
+          placeholder="Image URL"
+          className="w-full color-[#4E928A] text-[#4E928A] border px-3 py-2 rounded m-1"
+        />
+        <input
+          name="media.alt"
+          value={formData.media[0].alt}
+          onChange={handleChange}
+          placeholder="Image Alt Text"
+          className="w-full color-[#4E928A] text-[#4E928A] border px-3 py-2 rounded m-1"
+        />
 
-      <input
-        name="price"
-        type="number"
-        value={formData.price}
-        onChange={handleChange}
-        placeholder="Price"
-        required
-        className="w-full border px-3 py-2 rounded"
-      />
+        <input
+          name="price"
+          type="number"
+          value={formData.price}
+          onChange={handleChange}
+          placeholder="Price"
+          required
+          className="w-full color-[#4E928A] text-[#4E928A] border px-3 py-2 rounded m-1"
+        />
 
-      <input
-        name="maxGuests"
-        type="number"
-        value={formData.maxGuests}
-        onChange={handleChange}
-        placeholder="Max Guests"
-        required
-        className="w-full border px-3 py-2 rounded"
-      />
+        <input
+          name="maxGuests"
+          type="number"
+          value={formData.maxGuests}
+          onChange={handleChange}
+          placeholder="Max Guests"
+          required
+          className="w-full color-[#4E928A] text-[#4E928A] border px-3 py-2 rounded m-1"
+        />
 
-      <input
-        name="rating"
-        type="number"
-        value={formData.rating}
-        onChange={handleChange}
-        placeholder="Rating (optional)"
-        className="w-full border px-3 py-2 rounded"
-      />
+        <input
+          name="rating"
+          type="number"
+          value={formData.rating}
+          onChange={handleChange}
+          placeholder="Rating (optional)"
+          className="w-full color-[#4E928A] text-[#4E928A] border px-3 py-2 rounded m-1"
+        />
 
-      <fieldset className="border p-3 rounded">
-        <legend className="text-sm font-medium">Amenities</legend>
-        {["wifi", "parking", "breakfast", "pets"].map((key) => (
-          <label key={key} className="block">
-            <input
-              type="checkbox"
-              name={`meta.${key}`}
-              checked={formData.meta[key]}
-              onChange={handleChange}
-              className="mr-2"
-            />
-            {key.charAt(0).toUpperCase() + key.slice(1)}
-          </label>
-        ))}
-      </fieldset>
+        <fieldset className="border p-3 rounded color-[#4E928A] text-[#4E928A] m-1">
+          <legend className="text-sm font-medium color-[#4E928A] text-[#4E928A] ">
+            Amenities
+          </legend>
+          {["wifi", "parking", "breakfast", "pets"].map((key) => (
+            <label key={key} className="block color-[#4E928A] text-[#4E928A] ">
+              <input
+                type="checkbox"
+                name={`meta.${key}`}
+                checked={formData.meta[key]}
+                onChange={handleChange}
+                className="mr-2 color-[#4E928A] text-[#4E928A] m-1 "
+              />
+              {key.charAt(0).toUpperCase() + key.slice(1)}
+            </label>
+          ))}
+        </fieldset>
+      </div>
+      <div>
+        <fieldset className="border p-3 rounded color-[#4E928A] text-[#4E928A] mt-11">
+          <legend className="text-sm font-medium">Location</legend>
+          {["address", "city", "zip", "country", "continent", "lat", "lng"].map(
+            (key) => (
+              <input
+                key={key}
+                name={`location.${key}`}
+                value={formData.location[key]}
+                onChange={handleChange}
+                placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
+                className="w-full border px-3 py-2 rounded my-1 color-[#4E928A] text-[#4E928A]"
+              />
+            )
+          )}
+        </fieldset>
 
-      <fieldset className="border p-3 rounded">
-        <legend className="text-sm font-medium">Location</legend>
-        {["address", "city", "zip", "country", "continent", "lat", "lng"].map(
-          (key) => (
-            <input
-              key={key}
-              name={`location.${key}`}
-              value={formData.location[key]}
-              onChange={handleChange}
-              placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
-              className="w-full border px-3 py-2 rounded my-1"
-            />
-          )
-        )}
-      </fieldset>
-
-      <button
-        type="submit"
-        className="bg-[#4E928A] text-white px-4 py-2 rounded hover:bg-[#3d746e]"
-      >
-        Submit Venue
-      </button>
+        <button
+          type="submit"
+          className="bg-[#4E928A] text-white px-4 py-2 rounded hover:bg-[#3d746e]"
+        >
+          Submit Venue
+        </button>
+      </div>
     </form>
   );
 };
