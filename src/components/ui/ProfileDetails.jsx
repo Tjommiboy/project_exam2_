@@ -1,7 +1,7 @@
 import Spinner from "./Spinner";
 
 const ProfileDetails = ({ profile, loading }) => {
-  if (loading) {
+  if (loading || !profile || !profile.avatar) {
     return (
       <div className="flex justify-center mt-8">
         <Spinner loading={loading} />

@@ -12,7 +12,12 @@ function VenueCard({ venue }) {
           alt={venue.media?.[0]?.alt || venue.name}
           className="w-full h-48 object-cover mb-2 rounded"
         />
-        <h2 className="text-xl text-gray-500 font-medium">{venue.name}</h2>
+        <h2 className="text-xl text-gray-500 font-medium">
+          {" "}
+          {venue.name.length > 16
+            ? venue.name.slice(0, 16) + "..."
+            : venue.name}
+        </h2>
         <p className="text-sm text-gray-500">
           {venue.location.city}, {venue.location.country}
         </p>

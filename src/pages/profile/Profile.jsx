@@ -3,7 +3,7 @@ import { getProfile, updateProfile } from "../../api/profileUser";
 import ProfileDetails from "../../components/ui/ProfileDetails";
 import ProfileUpdateForm from "../../components/ui/ProfileUpdateForm";
 import ProfileModal from "../../components/ui/ProfileUpdateModal";
-
+import { authGuard } from "../../storage/authguard";
 import { loadProfile } from "../../storage/loadProfile";
 import { loadToken } from "../../storage/loadProfile";
 
@@ -12,14 +12,15 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const token = loadToken();
+  const accessToken = loadToken();
+  authGuard(accessToken);
   const profileData = loadProfile();
   const name = profileData?.name;
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const data = await getProfile(name, token);
+        const data = await getProfile(name, accessToken);
 
         if (data && data.data) {
           setProfile(data.data);
@@ -36,7 +37,7 @@ const Profile = () => {
       }
     };
     fetchProfile();
-  }, [name, token]);
+  }, [name, accessToken]);
 
   const handleUpdate = async (formData) => {
     const updatedData = {
@@ -50,8 +51,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4 text-[#4E928A]">My Profile</h2>
+    <div className="container p-4 bg-yellow-100">
+      <h1 className="text-xl font-bold mb-2 text-[#2b615b]">My Profile</h1>
       <ProfileDetails profile={profile} loading={loading} />
 
       <button
@@ -62,7 +63,9 @@ const Profile = () => {
       </button>
 
       <ProfileModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2 className="text-xl font-semibold mb-4">Edit Profile</h2>
+        <h2 className="text-xl font-semibold mb-4 text-[#2b615b]">
+          Edit Profile
+        </h2>
         <ProfileUpdateForm profile={profile} onUpdate={handleUpdate} />
       </ProfileModal>
     </div>

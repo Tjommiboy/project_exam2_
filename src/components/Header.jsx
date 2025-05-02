@@ -1,7 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import Button from "../components/ui/Button";
-
+import LogoutButton from "./ui/LogoutButton";
+import { isLoggedIn } from "../storage/isLoggedIn";
 function Header() {
+  const loggedIn = isLoggedIn();
+
   return (
     <header>
       <div className="bg-[#4E928A] px-6 py-4">
@@ -16,12 +19,21 @@ function Header() {
             <NavLink to="/profile">
               <Button>Profile</Button>
             </NavLink>
-            <NavLink to="/login">
-              <Button>Login</Button>
-            </NavLink>
-            <NavLink to="/register/Customer">
-              <Button>Register</Button>
-            </NavLink>
+            {!loggedIn && (
+              <>
+                <NavLink to="/login">
+                  <Button>Login</Button>
+                </NavLink>
+                <NavLink to="/register/Customer">
+                  <Button>Register</Button>
+                </NavLink>
+              </>
+            )}{" "}
+            {loggedIn && (
+              <NavLink to="/">
+                <LogoutButton />
+              </NavLink>
+            )}
           </div>
         </div>
       </div>

@@ -4,4 +4,5 @@ function remove(key) {
 
 export function removeToken() {
   remove("token");
+  remove("accessToken");
 }

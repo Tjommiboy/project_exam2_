@@ -64,8 +64,10 @@ const SingleVenue = () => {
             <div className="p-4">
               <div className="flex justify-between">
                 <div>
-                  <h2 className="text-3xl text-gray-700 font mb-2 ">
-                    {venue.data.name}
+                  <h2 className="text-3xl text-gray-700 font mb-2">
+                    {venue.data.name.length > 20
+                      ? venue.data.name.slice(0, 20) + "..."
+                      : venue.data.name}
                   </h2>
                   <h3 className=" text-gray-500 ml-1 ">About Venue:</h3>
                   <p className=" text-gray-500 w-[500px]">
@@ -79,12 +81,18 @@ const SingleVenue = () => {
                   >
                     Location:
                   </label>
-                  <div className="flex justify-between m-2">
-                    <p className="text-gray-500">
-                      City:{venue.data.location.city}
+                  <div className="flex justify-between mt-1">
+                    <p className="text-gray-700 font-medium">
+                      Country:{" "}
+                      <p className="text-gray-500 font-light m-2">
+                        {venue.data.location.country}
+                      </p>
                     </p>
-                    <p className="text-gray-500">
-                      Country:{venue.data.location.country}
+                    <p className="text-gray-700 font-medium">
+                      City:{" "}
+                      <p className="text-gray-500 font-light m-2">
+                        {venue.data.location.city}
+                      </p>
                     </p>
                   </div>
                   <label

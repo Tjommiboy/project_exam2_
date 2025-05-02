@@ -1,6 +1,6 @@
 export function authGuard() {
-  if (!localStorage.token) {
+  if (!localStorage.accessToken) {
     alert("You must be logged in to view this page");
-    window.location.href = "/login/index.html";
+    window.location.href = "/login/";
   }
 }
