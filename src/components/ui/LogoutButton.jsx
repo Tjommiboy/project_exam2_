@@ -7,8 +7,12 @@ const LogoutButton = () => {
 
   const handleLogout = () => {
     removeToken();
-    localStorage.removeItem("profile"); // optionally clear profile info too
-    navigate("/login"); // redirect to login page
+    localStorage.removeItem("profile");
+
+    // Notify other tabs/components
+    window.dispatchEvent(new Event("storage"));
+
+    navigate("/login");
   };
 
   return (
