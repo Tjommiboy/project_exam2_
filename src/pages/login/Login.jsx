@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ You missed this line
 import { loginUser } from "../../api/loginUser";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,6 +12,7 @@ const Login = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // ✅ This needs to be after imports
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +29,10 @@ const Login = () => {
       save("profile", { name: response.data.name, email: response.data.email });
 
       toast.success("Login was successful!", {
-        onClose: () => (window.location.href = "/"),
+        onClose: () => {
+          window.dispatchEvent(new Event("authChange"));
+          navigate("/");
+        },
       });
     } catch (error) {
       toast.error("Error: " + error.message);

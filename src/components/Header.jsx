@@ -1,10 +1,17 @@
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Button from "../components/ui/Button";
 import LogoutButton from "./ui/LogoutButton";
 import { isLoggedIn } from "../storage/isLoggedIn";
 
 function Header() {
-  const loggedIn = isLoggedIn();
+  const [loggedIn, setLoggedIn] = useState(isLoggedIn());
+
+  useEffect(() => {
+    const updateAuth = () => setLoggedIn(isLoggedIn());
+    window.addEventListener("authChange", updateAuth);
+    return () => window.removeEventListener("authChange", updateAuth);
+  }, []);
 
   return (
     <header>
@@ -14,7 +21,7 @@ function Header() {
             <h1 className="text-white text-xl font-bold">Holidaze</h1>
           </Link>
           <div className="flex gap-2">
-            {!loggedIn && (
+            {!loggedIn ? (
               <>
                 <NavLink to="/login">
                   <Button>Login</Button>
@@ -23,8 +30,7 @@ function Header() {
                   <Button>Register</Button>
                 </NavLink>
               </>
-            )}{" "}
-            {loggedIn && (
+            ) : (
               <>
                 <NavLink to="/createVenue">
                   <Button variant="ghost">Create Venue</Button>
@@ -32,9 +38,7 @@ function Header() {
                 <NavLink to="/profile">
                   <Button>Profile</Button>
                 </NavLink>
-                <NavLink to="/">
-                  <LogoutButton />
-                </NavLink>
+                <LogoutButton />
               </>
             )}
           </div>

@@ -9,8 +9,8 @@ const LogoutButton = () => {
     removeToken();
     localStorage.removeItem("profile");
 
-    // Notify other tabs/components
-    window.dispatchEvent(new Event("storage"));
+    // Notify this tab and others
+    window.dispatchEvent(new Event("authChange"));
 
     navigate("/login");
   };
