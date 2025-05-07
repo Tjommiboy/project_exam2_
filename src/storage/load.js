@@ -6,5 +6,5 @@ function load(key) {
   }
 }
 export function loadToken() {
-  return load("token");
+  return load("accessToken");
 }

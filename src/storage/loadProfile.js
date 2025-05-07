@@ -3,7 +3,6 @@ const load = (key) => {
 
   if (!value) return null;
 
-  // Only attempt to parse if value looks like JSON
   if (value.startsWith("{") || value.startsWith("[")) {
     try {
       return JSON.parse(value);
@@ -12,7 +11,7 @@ const load = (key) => {
     }
   }
 
-  return value; // Return raw string (like a token)
+  return value;
 };
 
 export const loadProfile = () => load("profile");
