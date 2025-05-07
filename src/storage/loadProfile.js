@@ -1,9 +1,18 @@
 const load = (key) => {
-  try {
-    return JSON.parse(localStorage.getItem(key));
-  } catch {
-    return null;
+  const value = localStorage.getItem(key);
+
+  if (!value) return null;
+
+  // Only attempt to parse if value looks like JSON
+  if (value.startsWith("{") || value.startsWith("[")) {
+    try {
+      return JSON.parse(value);
+    } catch {
+      return value;
+    }
   }
+
+  return value; // Return raw string (like a token)
 };
 
 export const loadProfile = () => load("profile");

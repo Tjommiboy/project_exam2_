@@ -8,10 +8,17 @@ function Header() {
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
 
   useEffect(() => {
-    const updateAuth = () => setLoggedIn(isLoggedIn());
-    window.addEventListener("authChange", updateAuth);
-    return () => window.removeEventListener("authChange", updateAuth);
+    const handleAuthChange = () => {
+      const loggedInNow = isLoggedIn();
+      console.log("🔄 authChange: isLoggedIn() =", loggedInNow);
+      setLoggedIn(loggedInNow); // ✅ make sure this is being called
+    };
+
+    window.addEventListener("authChange", handleAuthChange);
+    return () => window.removeEventListener("authChange", handleAuthChange);
   }, []);
+
+  console.log("Logged in:", loggedIn);
 
   return (
     <header>
