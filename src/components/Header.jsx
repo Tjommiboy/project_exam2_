@@ -21,7 +21,7 @@ function Header() {
   console.log("Logged in:", loggedIn);
 
   return (
-    <header>
+    <header className="sticky top-0 z-50 ">
       <div className="bg-[#4E928A] px-6 py-4">
         <div className="flex justify-between items-center">
           <Link to="/">

@@ -82,18 +82,18 @@ const SingleVenue = () => {
                     Location:
                   </label>
                   <div className="flex justify-between mt-1">
-                    <p className="text-gray-700 font-medium">
-                      Country:{" "}
+                    <div className="text-gray-700 font-medium">
+                      Country:
                       <p className="text-gray-500 font-light m-2">
                         {venue.data.location.country}
                       </p>
-                    </p>
-                    <p className="text-gray-700 font-medium">
-                      City:{" "}
+                    </div>
+                    <div className="text-gray-700 font-medium">
+                      City:
                       <p className="text-gray-500 font-light m-2">
                         {venue.data.location.city}
                       </p>
-                    </p>
+                    </div>
                   </div>
                   <label
                     className="text-sm font-semibold text-gray-700 mb-2 mt-2"

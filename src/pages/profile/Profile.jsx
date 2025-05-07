@@ -5,7 +5,7 @@ import ProfileUpdateForm from "../../components/ui/ProfileUpdateForm";
 import ProfileModal from "../../components/ui/ProfileUpdateModal";
 import { authGuard } from "../../storage/authguard";
 import { loadProfile } from "../../storage/loadProfile";
-import { loadToken } from "../../storage/loadProfile";
+import { loadToken } from "../../storage/load";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -41,15 +41,34 @@ const Profile = () => {
 
   const handleUpdate = async (formData) => {
     const updatedData = {
-      bio: formData.bio,
-      avatar: { url: formData.avatar, alt: "User avatar" },
-      banner: { url: formData.banner, alt: "User banner" },
+      bio: formData.bio || "",
+      avatar: {
+        url: formData.avatar || "",
+        alt: "User avatar",
+      },
+      banner: {
+        url: formData.banner || "",
+        alt: "User banner",
+      },
     };
-    const updated = await updateProfile(name, token, updatedData);
-    setProfile(updated.data);
-    setIsModalOpen(false);
-  };
 
+    try {
+      const updated = await updateProfile(name, accessToken, updatedData);
+      console.log("Update result:", updated);
+
+      if (updated.errors) {
+        console.error("Update failed:", updated.errors);
+        alert("Update failed: " + updated.errors[0]?.message);
+        return;
+      }
+
+      setProfile(updated.data);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Update error:", error);
+      alert("Update error: " + error.message);
+    }
+  };
   return (
     <div className="container p-4 bg-yellow-100">
       <h1 className="text-xl font-bold mb-2 text-[#2b615b]">My Profile</h1>

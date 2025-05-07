@@ -1,10 +1,10 @@
 import { PROFILE } from "./constants";
 import { API_KEY } from "./constants";
-
-export const getProfile = async (name, token) => {
+import { UPDATE_PROFILE } from "./constants";
+export const getProfile = async (name, accessToken) => {
   const response = await fetch(`${PROFILE}/${name}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${accessToken}`,
       "X-Noroff-API-KEY": API_KEY,
     },
   });
@@ -14,12 +14,12 @@ export const getProfile = async (name, token) => {
   return result;
 };
 
-export const updateProfile = async (name, token, data) => {
-  const response = await fetch(`${PROFILE}/${name}`, {
+export const updateProfile = async (name, accessToken, data) => {
+  const response = await fetch(`${UPDATE_PROFILE}/${name}`, {
     method: "PUT",
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${accessToken}`,
       "X-Noroff-API-KEY": API_KEY,
     },
     body: JSON.stringify(data),

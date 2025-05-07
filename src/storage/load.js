@@ -1,9 +1,5 @@
 function load(key) {
-  try {
-    return JSON.parse(localStorage.getItem(key));
-  } catch {
-    return null;
-  }
+  return localStorage.getItem(key); // ✅ no JSON.parse
 }
 export function loadToken() {
   return load("accessToken");
