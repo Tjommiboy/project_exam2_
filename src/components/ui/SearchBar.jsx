@@ -34,7 +34,7 @@ const SearchBar = ({ onSearch }) => {
         <div className="relative">
           <button
             onClick={toggleDropdown}
-            className="flex items-center gap-1 px-3 py-2 rounded bg-[#4E928A] border border-[#4E928A] text-white text-sm font-semibold"
+            className="flex items-center gap-1 px-3 py-2 rounded bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#4E928A] hover:text-[#e0f2f1] "
           >
             <span>{selectedFilter || "Filter"}</span>
             <svg
@@ -42,7 +42,7 @@ const SearchBar = ({ onSearch }) => {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="h-4 w-4 text-amber-100"
+              className="h-4 w-4 #4E928A"
             >
               <path
                 strokeLinecap="round"
@@ -78,19 +78,18 @@ const SearchBar = ({ onSearch }) => {
           )}
         </div>
 
-        {/* Search Field and Button */}
         <div className="flex gap-2">
           <input
             type="text"
             value={searchQuery}
             onChange={handleSearchInput}
-            className="w-[500px] bg-transparent placeholder:text-slate-400 text-[#4E928A] font-semibold border border-[#4E928A] rounded-md px-4 py-2 transition duration-300"
+            className="w-[500px] bg-transparent placeholder:text-[#4E928A] text-[#4E928A] font-semibold border border-[#4E928A] rounded-md px-4 py-2 transition duration-300"
             placeholder="Search venues..."
           />
 
           <button
             onClick={handleSearch}
-            className="flex items-center gap-1 rounded bg-[#4E928A] py-2 px-3 text-white text-sm transition-all shadow-sm"
+            className="flex items-center gap-1 roundedbg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#4E928A] hover:text-[#e0f2f1]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

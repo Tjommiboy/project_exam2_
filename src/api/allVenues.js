@@ -1,12 +1,13 @@
 import { ALLVENUES } from "./constants";
 
-export async function getAllVenues() {
-  const response = await fetch(`${ALLVENUES}`);
+export async function getAllVenues(page = 1, limit = 20) {
+  const response = await fetch(`${ALLVENUES}?page=${page}&limit=${limit}`);
 
   if (!response.ok) {
-    throw new Error("failed to fetch venues");
+    throw new Error("Failed to fetch venues");
   }
+
   const data = await response.json();
-  console.log(data);
-  return data;
+  console.log("Fetched venue data:", data);
+  return data; // Make sure this includes a .meta.total
 }
