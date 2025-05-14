@@ -48,22 +48,6 @@ function Home() {
   // Debounced search handler
   const debouncedSearch = debounce(handleSearch, 500);
 
-  // useEffect(() => {
-  //   // Fetch all venues on initial load
-  //   async function fetchVenues() {
-  //     try {
-  //       const data = await getAllVenues();
-  //       setVenues(data.data); // Adjust this if the actual key differs
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-
-  //   fetchVenues();
-  // }, []);
-
   if (error) {
     return <div className="text-red-500 text-center mt-8">Error: {error}</div>;
   }
@@ -91,25 +75,41 @@ function Home() {
       ) : (
         <p className="text-center mt-8">No venues found.</p>
       )}
-      <div className="flex justify-center mt-8 space-x-4">
+      <div className="flex justify-center flex-wrap gap-2 mt-8">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className="bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#4E928A] hover:text-[#e0f2f1] "
+          className="px-3 py-1 border rounded hover:bg-[#4E928A] hover:text-white"
         >
-          Previous
+          Prev
         </button>
 
-        <span className="self-center text-[#4E928A] ">
-          Page {currentPage} of {totalPages}
-        </span>
+        {Array.from({ length: totalPages }, (_, i) => i + 1)
+          .slice(
+            Math.max(currentPage - 5, 0),
+            Math.min(currentPage + 4, totalPages)
+          )
+          .map((page) => (
+            <button
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              className={`px-3 py-1 border rounded ${
+                currentPage === page
+                  ? "bg-[#4E928A] text-white"
+                  : "hover:bg-[#e0f2f1] hover:text-[#4E928A]"
+              }`}
+            >
+              {page}
+            </button>
+          ))}
 
+        {/* Next button */}
         <button
           onClick={() =>
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
-          className="bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#4E928A] hover:text-[#e0f2f1] "
+          className="px-3 py-1 border rounded hover:bg-[#4E928A] hover:text-white"
         >
           Next
         </button>

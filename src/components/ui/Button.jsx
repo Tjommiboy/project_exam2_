@@ -9,11 +9,13 @@ function Button({
 
   const variantStyles = {
     primary: "bg-[#4E928A] text-white hover:bg-[#3b756e]",
-    outline:
-      "bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#e0f2f1]",
+    outline: "hover:bg-[#e0f2f1] hover:text-[#4E928A]",
     ghost:
-      "bg-transparent text-[#e0f2f1] hover:bg-[#e0f2f1] hover:text-[#4E928A] ",
+      "bg-transparent text-[#e0f2f1] hover:bg-[#e0f2f1] hover:text-[#4E928A]",
     discriptive: "rounded-md font-semibold transition",
+    active: "bg-[#e0f2f1] text-[#4E928A]",
+    inactive:
+      "bg-transparent text-[#e0f2f1] hover:bg-[#e0f2f1] hover:text-[#4E928A] ",
   };
 
   const fallbackVariant = "ghost";

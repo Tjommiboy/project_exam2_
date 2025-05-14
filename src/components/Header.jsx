@@ -71,10 +71,18 @@ function Header() {
               {!loggedIn ? (
                 <>
                   <NavLink to="/login">
-                    <Button>Login</Button>
+                    {({ isActive }) => (
+                      <Button variant={isActive ? "active" : "inactive"}>
+                        Login
+                      </Button>
+                    )}
                   </NavLink>
                   <NavLink to="/register/Customer">
-                    <Button>Register</Button>
+                    {({ isActive }) => (
+                      <Button variant={isActive ? "active" : "inactive"}>
+                        Register
+                      </Button>
+                    )}
                   </NavLink>
                 </>
               ) : (
@@ -82,15 +90,27 @@ function Header() {
                   {isVenueManager ? (
                     <>
                       <NavLink to="/venueManager">
-                        <Button>Venue Manager</Button>
+                        {({ isActive }) => (
+                          <Button variant={isActive ? "active" : "inactive"}>
+                            Venue Manager
+                          </Button>
+                        )}
                       </NavLink>
                       <NavLink to="/createVenue">
-                        <Button variant="ghost">Create Venue</Button>
+                        {({ isActive }) => (
+                          <Button variant={isActive ? "active" : "inactive"}>
+                            Create Venue
+                          </Button>
+                        )}
                       </NavLink>
                     </>
                   ) : (
                     <NavLink to="/profile">
-                      <Button>Profile</Button>
+                      {({ isActive }) => (
+                        <Button variant={isActive ? "active" : "inactive"}>
+                          Profile
+                        </Button>
+                      )}
                     </NavLink>
                   )}
                   <LogoutButton />
@@ -100,7 +120,6 @@ function Header() {
           )}
         </div>
 
-        {/* Hamburger menu dropdown */}
         {isMobile && isMenuOpen && (
           <div className="flex flex-col items-center mt-4 md:hidden">
             {!loggedIn ? (

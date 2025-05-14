@@ -83,14 +83,14 @@ const SingleVenue = () => {
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/20 hover:bg-white/50 p-1 rounded-full"
+                    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/40 hover:bg-white/50 p-1 rounded-full"
                   >
                     ‹
                   </button>
 
                   <button
                     onClick={nextImage}
-                    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/20 hover:bg-white/50 p-1 rounded-full"
+                    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/40 hover:bg-white/50 p-1 rounded-full"
                   >
                     ›
                   </button>

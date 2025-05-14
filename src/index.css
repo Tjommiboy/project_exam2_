@@ -12,7 +12,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --brand-color: #4e928a;
 }
+
+.Holidaze-Green {
+  color: var(--brand-color);
+}
+
 body {
   background-color: #d2f2ec;
   font-family: "Instrument Sans", sans-serif;

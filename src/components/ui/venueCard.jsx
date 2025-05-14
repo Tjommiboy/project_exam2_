@@ -34,13 +34,19 @@ function VenueCard({ venue }) {
         </p>
       </Link>
       <div className="self-start mt-1">
-        <button
-          variant="discriptive"
-          onClick={() => setShowFullDescription((prevStat) => !prevStat)}
-          className="text-indigo-500 hover:text-indigo-600 "
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={() => setShowFullDescription((prev) => !prev)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              setShowFullDescription((prev) => !prev);
+            }
+          }}
+          className="text-indigo-500 hover:text-indigo-600 cursor-pointer"
         >
           {showFullDescription ? "Less" : "More"}
-        </button>
+        </span>
       </div>
       <div className="flex justify-between mt-auto pt-4">
         <div className="text-sm mr-4 text-gray-500">
