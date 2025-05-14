@@ -13,6 +13,7 @@ function Button({
       "bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#e0f2f1]",
     ghost:
       "bg-transparent text-[#e0f2f1] hover:bg-[#e0f2f1] hover:text-[#4E928A] ",
+    discriptive: "rounded-md font-semibold transition",
   };
 
   const fallbackVariant = "ghost";

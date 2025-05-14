@@ -18,6 +18,22 @@ const SingleVenue = () => {
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [guests, setGuests] = useState(1);
+  const [imageIndex, setImageIndex] = useState(0);
+
+  const nextImage = () => {
+    if (venue?.data?.media?.length > 0) {
+      setImageIndex((prevIndex) => (prevIndex + 1) % venue.data.media.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (venue?.data?.media?.length > 0) {
+      setImageIndex(
+        (prevIndex) =>
+          (prevIndex - 1 + venue.data.media.length) % venue.data.media.length
+      );
+    }
+  };
 
   const pricePerNight = venue?.data?.price || 0;
   const totalPrice = pricePerNight * nights;
@@ -56,11 +72,31 @@ const SingleVenue = () => {
       ) : venue ? (
         <div className="flex container justify-center m-auto gap-4">
           <div className="w-full max-w-[810px] bg-amber-50">
-            <img
-              src={venue.data.media?.[0]?.url}
-              alt={venue.data.media?.[0]?.alt || venue.name}
-              className="w-full h-[400px] object-cover rounded-t-lg mb-4"
-            />
+            <div className="relative w-full h-[400px]">
+              <img
+                src={venue.data.media?.[imageIndex]?.url}
+                alt={venue.data.media?.[imageIndex]?.alt || venue.name}
+                className="w-full h-full object-cover rounded-t-lg"
+              />
+
+              {venue?.data?.media?.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/20 hover:bg-white/50 p-1 rounded-full"
+                  >
+                    ‹
+                  </button>
+
+                  <button
+                    onClick={nextImage}
+                    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/20 hover:bg-white/50 p-1 rounded-full"
+                  >
+                    ›
+                  </button>
+                </>
+              )}
+            </div>
             <div className="p-4">
               <div className="flex justify-between">
                 <div>
