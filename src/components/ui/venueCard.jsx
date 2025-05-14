@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function VenueCard({ venue }) {
+  const [] = useState(false);
   return (
     <div className="flex flex-col border bg-white rounded-md p-4 shadow-sm h-96">
       <Link to={`/singleVenue/${venue.id}`}>

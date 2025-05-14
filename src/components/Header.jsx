@@ -6,50 +6,125 @@ import { isLoggedIn } from "../storage/isLoggedIn";
 
 function Header() {
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isVenueManager, setVenueManager] = useState(false);
 
   useEffect(() => {
     const handleAuthChange = () => {
       const loggedInNow = isLoggedIn();
       console.log("🔄 authChange: isLoggedIn() =", loggedInNow);
-      setLoggedIn(loggedInNow); // ✅ make sure this is being called
+      setLoggedIn(loggedInNow);
     };
 
     window.addEventListener("authChange", handleAuthChange);
     return () => window.removeEventListener("authChange", handleAuthChange);
   }, []);
 
-  console.log("Logged in:", loggedIn);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("profile"));
+    if (user && user.venueManager) {
+      setVenueManager(true);
+    } else {
+      setVenueManager(false);
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    // Check if screen width is under 600px
+    const handleResize = () => {
+      if (window.innerWidth <= 600) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Run the check initially
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prevState) => !prevState);
+  };
 
   return (
-    <header className="sticky top-0 z-50 ">
+    <header className="sticky top-0 z-50">
       <div className="bg-[#4E928A] px-6 py-4">
         <div className="flex justify-between items-center">
           <Link to="/">
             <h1 className="text-white text-xl font-bold">Holidaze</h1>
           </Link>
-          <div className="flex gap-2">
+
+          {/* Show the hamburger menu on small screens */}
+          {isMobile ? (
+            <button
+              onClick={toggleMenu}
+              className="text-white text-2xl md:hidden"
+            >
+              {isMenuOpen ? "×" : "☰"}
+            </button>
+          ) : (
+            <div className="flex gap-2">
+              {!loggedIn ? (
+                <>
+                  <NavLink to="/login">
+                    <Button>Login</Button>
+                  </NavLink>
+                  <NavLink to="/register/Customer">
+                    <Button>Register</Button>
+                  </NavLink>
+                </>
+              ) : (
+                <>
+                  {isVenueManager ? (
+                    <>
+                      <NavLink to="/venueManager">
+                        <Button>Venue Manager</Button>
+                      </NavLink>
+                      <NavLink to="/createVenue">
+                        <Button variant="ghost">Create Venue</Button>
+                      </NavLink>
+                    </>
+                  ) : (
+                    <NavLink to="/profile">
+                      <Button>Profile</Button>
+                    </NavLink>
+                  )}
+                  <LogoutButton />
+                </>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Hamburger menu dropdown */}
+        {isMobile && isMenuOpen && (
+          <div className="flex flex-col items-center mt-4 md:hidden">
             {!loggedIn ? (
               <>
-                <NavLink to="/login">
+                <NavLink to="/login" className="mb-2">
                   <Button>Login</Button>
                 </NavLink>
-                <NavLink to="/register/Customer">
+                <NavLink to="/register/Customer" className="mb-2">
                   <Button>Register</Button>
                 </NavLink>
               </>
             ) : (
               <>
-                <NavLink to="/createVenue">
+                <NavLink to="/createVenue" className="mb-2">
                   <Button variant="ghost">Create Venue</Button>
                 </NavLink>
-                <NavLink to="/profile">
+                <NavLink to="/profile" className="mb-2">
                   <Button>Profile</Button>
                 </NavLink>
                 <LogoutButton />
               </>
             )}
           </div>
-        </div>
+        )}
       </div>
     </header>
   );

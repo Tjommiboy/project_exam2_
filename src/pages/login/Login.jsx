@@ -4,6 +4,7 @@ import { loginUser } from "../../api/loginUser";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { save } from "../../storage/save";
+import { getProfile } from "../../api/profileUser";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -25,12 +26,33 @@ const Login = () => {
 
     try {
       const response = await loginUser(formData);
-      save("accessToken", response.data.accessToken);
-      save("profile", { name: response.data.name, email: response.data.email });
+
+      const accessToken = response.data.accessToken;
+      const name = response.data.name;
+
+      save("accessToken", accessToken);
+
+      // Fetch full profile to check venueManager
+      const profileResponse = await getProfile(name, accessToken);
+      const profileData = profileResponse.data;
+
+      // Save full profile
+      save("profile", {
+        name: profileData.name,
+        email: profileData.email,
+        avatar: profileData.avatar,
+        venueManager: profileData.venueManager,
+      });
+
       window.dispatchEvent(new Event("authChange"));
+
       toast.success("Login was successful!", {
         onClose: () => {
-          navigate("/");
+          if (profileData.venueManager) {
+            navigate("/VenueManager");
+          } else {
+            navigate("/profile");
+          }
         },
       });
     } catch (error) {
@@ -39,12 +61,11 @@ const Login = () => {
       setLoading(false);
     }
   };
-
   return (
     <div className="max-w-md mx-auto p-4">
       <ToastContainer position="top-center" autoClose={3000} />
       <form onSubmit={handleSubmit}>
-        <h2 className="text-xl font-bold mb-4 text-gray-500">Login</h2>
+        <h2 className="text-xl font-bold mb-4 text-[#4E928A]">Login</h2>
 
         <input
           name="email"
