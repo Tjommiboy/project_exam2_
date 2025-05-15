@@ -6,7 +6,7 @@ function VenueCard({ venue }) {
 
   let description = venue.description;
   if (!showFullDescription) {
-    description = description.substring(0, 40) + "...";
+    description = description.substring(0, 70) + "...";
   }
 
   return (

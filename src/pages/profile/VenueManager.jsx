@@ -70,16 +70,13 @@ const VenueManager = () => {
     }
   };
   return (
-    <div className="container p-4 bg-yellow-100">
+    <div className="container p-4">
       <h1 className="text-xl font-bold mb-2 text-[#2b615b]">My Profile</h1>
-      <ProfileDetails profile={profile} loading={loading} />
-
-      <button
-        className="mt-4 px-4 py-2 bg-blue-400 text-white rounded"
-        onClick={() => setIsModalOpen(true)}
-      >
-        Edit Profile
-      </button>
+      <ProfileDetails
+        profile={profile}
+        loading={loading}
+        onEdit={() => setIsModalOpen(true)}
+      />
 
       <ProfileModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2 className="text-xl font-semibold mb-4 text-[#2b615b]">

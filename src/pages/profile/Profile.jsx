@@ -70,7 +70,7 @@ const Profile = () => {
     }
   };
   return (
-    <div className="container p-4 bg-yellow-100">
+    <div className="container p-4">
       <h1 className="text-xl font-bold mb-2 text-[#2b615b]">My Profile</h1>
       <ProfileDetails profile={profile} loading={loading} />
 

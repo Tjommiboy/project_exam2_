@@ -63,7 +63,6 @@ const CreateVenueForm = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Convert strings to numbers where needed
     const payload = {
       ...formData,
       price: Number(formData.price),
@@ -76,7 +75,7 @@ const CreateVenueForm = ({ onSubmit }) => {
       },
     };
 
-    onSubmit(payload); // Send this to your API handler
+    onSubmit(payload);
   };
 
   return (

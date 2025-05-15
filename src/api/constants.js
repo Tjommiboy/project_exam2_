@@ -13,7 +13,7 @@ export const SINGLEBOOKINGS = `${API_BASE}/holidaze/bookings/<id>`;
 export const ALLVENUES = `${API_BASE}/holidaze/venues`;
 export const SINGLEVENUES = `${API_BASE}/holidaze/venues`;
 export const SEARCH = `${API_BASE}/holidaze/venues/search?q=<query>`;
-export const CREATE_VENUE = `${API_BASE}/holidaze/venue`;
+export const CREATE_VENUE = `${API_BASE}/holidaze/venues`;
 
 //Profiles
 

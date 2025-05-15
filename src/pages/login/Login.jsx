@@ -32,11 +32,9 @@ const Login = () => {
 
       save("accessToken", accessToken);
 
-      // Fetch full profile to check venueManager
       const profileResponse = await getProfile(name, accessToken);
       const profileData = profileResponse.data;
 
-      // Save full profile
       save("profile", {
         name: profileData.name,
         email: profileData.email,

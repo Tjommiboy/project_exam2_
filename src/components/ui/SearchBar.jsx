@@ -18,7 +18,11 @@ const SearchBar = ({ onSearch }) => {
   const toggleDropdown = () => {
     setDropDownVisible(!isDropdownVisible);
   };
-
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      onSearch(searchQuery);
+    }
+  };
   const handleSearch = () => {
     if (searchQuery.trim()) {
       onSearch(searchQuery);
@@ -83,6 +87,7 @@ const SearchBar = ({ onSearch }) => {
             type="text"
             value={searchQuery}
             onChange={handleSearchInput}
+            onKeyDown={handleKeyDown}
             className="w-[500px] bg-transparent placeholder:text-[#4E928A] text-[#4E928A] font-semibold border border-[#4E928A] rounded-md px-4 py-2 transition duration-300"
             placeholder="Search venues..."
           />

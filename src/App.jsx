@@ -8,7 +8,7 @@ import HostProfile from "./pages/profile/VenueManager";
 import Manager from "./pages/register/Manager";
 import NotFound from "./pages/notFound/NotFound";
 import VenueManager from "./pages/profile/VenueManager";
-import CreateVenue from "./pages/createVenue/CreateVenue";
+import CreateVenuePage from "./pages/createVenue/CreateVenue";
 import SingleVenue from "./pages/singleVenue/SingleVenue";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
           <Route path="Profile" element={<Profile />} />
           {/* <Route path="HostProfile" element={<HostProfile />} /> */}
           <Route path="VenueManager" element={<VenueManager />} />
-          <Route path="createVenue" element={<CreateVenue />} />
+          <Route path="createVenue" element={<CreateVenuePage />} />
           <Route path="singleVenue/:id" element={<SingleVenue />} />
           <Route path="*" element={<NotFound />} />
         </Route>
