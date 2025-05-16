@@ -19,3 +19,4 @@ export const CREATE_VENUE = `${API_BASE}/holidaze/venues`;
 
 export const PROFILE = `${API_BASE}/holidaze/profiles`;
 export const UPDATE_PROFILE = `${API_BASE}/holidaze/profiles`;
+export const PROFILE_VENUES = `${UPDATE_PROFILE}`;
