@@ -45,7 +45,7 @@ function VenueCard({ venue }) {
           }}
           className="text-indigo-500 hover:text-indigo-600 cursor-pointer"
         >
-          {showFullDescription ? "Less" : "More"}
+          See {showFullDescription ? "less" : "more"}
         </span>
       </div>
       <div className="flex justify-between mt-auto pt-4">

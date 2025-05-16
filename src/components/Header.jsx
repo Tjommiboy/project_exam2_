@@ -55,7 +55,7 @@ function Header() {
       <div className="bg-[#4E928A] px-6 py-4">
         <div className="flex justify-between items-center">
           <Link to="/">
-            <h1 className="text-white text-xl font-bold">Holidaze</h1>
+            <h1 className="text-white text-xl font-bold  ">Holidaze</h1>
           </Link>
 
           {/* Show the hamburger menu on small screens */}

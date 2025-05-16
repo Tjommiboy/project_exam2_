@@ -70,3 +70,13 @@ button:hover {
     background-color: #f9f9f9;
   }
 }
+.image-text {
+  background-image: url("../public/images/DSC_3607.jpg"); /* Path to your image */
+  background-size: cover;
+  background-position: 70%10%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* For some Firefox support */
+  color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
