@@ -19,7 +19,7 @@ const CreateVenuePage = () => {
         onClose: () => {
           navigate(`/singleVenue/${venue.data.id}`);
         },
-        autoClose: 2000, // Optional: how long the toast stays visible
+        autoClose: 2000,
       });
     } catch (error) {
       console.error("Failed to create venue:", error.message);

@@ -153,13 +153,13 @@ const CreateVenueForm = ({ onSubmit }) => {
             Amenities
           </legend>
           {["wifi", "parking", "breakfast", "pets"].map((key) => (
-            <label key={key} className="block color-[#4E928A] text-[#2b615b] ">
+            <label key={key} className="block">
               <input
                 type="checkbox"
                 name={`meta.${key}`}
                 checked={formData.meta[key]}
                 onChange={handleChange}
-                className="mr-2 color-[#4E928A] text-[#2b615b] m-1 "
+                className="mr-2 m-1"
               />
               {key.charAt(0).toUpperCase() + key.slice(1)}
             </label>
@@ -177,7 +177,7 @@ const CreateVenueForm = ({ onSubmit }) => {
                 value={formData.location[key]}
                 onChange={handleChange}
                 placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
-                className="w-full border px-3 py-2 rounded my-1 color-[#4E928A] text-[#2b615b]"
+                className="w-full border px-3 py-2 rounded my-1"
               />
             )
           )}
