@@ -115,12 +115,17 @@ const VenueManager = () => {
           <ProfileUpdateForm profile={profile} onUpdate={handleUpdate} />
         </ProfileModal>
       </div>
-      <div className="venue-list grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-        {venues.length === 0 ? (
-          <p>No venues found.</p>
-        ) : (
-          venues.map((venue) => <VenueCard key={venue.id} venue={venue} />)
-        )}
+      <div className="container p-4 ">
+        <div className="   bg-amber-50  rounded shadow">
+          <h3 className="ml-8 font-bold  text-[#2b615b]">My Venues</h3>
+          <div className="venue-list grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+            {venues.length === 0 ? (
+              <p>No venues found.</p>
+            ) : (
+              venues.map((venue) => <VenueCard key={venue.id} venue={venue} />)
+            )}
+          </div>
+        </div>
       </div>
     </>
   );
