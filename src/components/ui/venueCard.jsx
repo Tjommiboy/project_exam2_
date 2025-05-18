@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function VenueCard({ venue }) {
+function VenueCard({ venue, showActions }) {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   let description = venue.description;
@@ -33,6 +33,7 @@ function VenueCard({ venue }) {
           {description}
         </p>
       </Link>
+
       <div className="self-start mt-1">
         <span
           role="button"
@@ -48,6 +49,22 @@ function VenueCard({ venue }) {
           See {showFullDescription ? "less" : "more"}
         </span>
       </div>
+      {showActions && (
+        <div className="mt-1 flex gap-2 w-full">
+          <button
+            className="bg-[#4E928A] text-white rounded hover:bg-[#3d746e] "
+            onClick={() => console.log("Edit", venue.id)}
+          >
+            Edit
+          </button>
+          <button
+            className="bg-[#4E928A] text-white rounded hover:bg-[#3d746e] "
+            onClick={() => console.log("Delete", venue.id)}
+          >
+            Delete
+          </button>
+        </div>
+      )}
       <div className="flex justify-between mt-auto pt-4">
         <div className="text-sm mr-4 text-gray-500">
           ⭐ {venue.rating} • {venue.reviews} reviews

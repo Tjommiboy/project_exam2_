@@ -122,7 +122,9 @@ const VenueManager = () => {
             {venues.length === 0 ? (
               <p>No venues found.</p>
             ) : (
-              venues.map((venue) => <VenueCard key={venue.id} venue={venue} />)
+              venues.map((venue) => (
+                <VenueCard key={venue.id} venue={venue} showActions={true} />
+              ))
             )}
           </div>
         </div>
