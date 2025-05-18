@@ -124,21 +124,49 @@ function Header() {
           <div className="flex flex-col items-center mt-4 md:hidden">
             {!loggedIn ? (
               <>
-                <NavLink to="/login" className="mb-2">
-                  <Button>Login</Button>
+                <NavLink to="/login">
+                  {({ isActive }) => (
+                    <Button variant={isActive ? "active" : "inactive"}>
+                      Login
+                    </Button>
+                  )}
                 </NavLink>
-                <NavLink to="/register/Customer" className="mb-2">
-                  <Button>Register</Button>
+                <NavLink to="/register/Customer">
+                  {({ isActive }) => (
+                    <Button variant={isActive ? "active" : "inactive"}>
+                      Register
+                    </Button>
+                  )}
                 </NavLink>
               </>
             ) : (
               <>
-                <NavLink to="/createVenue" className="mb-2">
-                  <Button variant="ghost">Create Venue</Button>
-                </NavLink>
-                <NavLink to="/profile" className="mb-2">
-                  <Button>Profile</Button>
-                </NavLink>
+                {isVenueManager ? (
+                  <>
+                    <NavLink to="/venueManager">
+                      {({ isActive }) => (
+                        <Button variant={isActive ? "active" : "inactive"}>
+                          Venue Manager
+                        </Button>
+                      )}
+                    </NavLink>
+                    <NavLink to="/createVenue">
+                      {({ isActive }) => (
+                        <Button variant={isActive ? "active" : "inactive"}>
+                          Create Venue
+                        </Button>
+                      )}
+                    </NavLink>
+                  </>
+                ) : (
+                  <NavLink to="/profile">
+                    {({ isActive }) => (
+                      <Button variant={isActive ? "active" : "inactive"}>
+                        Profile
+                      </Button>
+                    )}
+                  </NavLink>
+                )}
                 <LogoutButton />
               </>
             )}

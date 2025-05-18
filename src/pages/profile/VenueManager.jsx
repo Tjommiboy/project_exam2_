@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getProfile, updateProfile } from "../../api/profileUser";
 import ProfileDetails from "../../components/ui/ProfileDetails";
 import ProfileUpdateForm from "../../components/ui/ProfileUpdateForm";
@@ -8,6 +8,9 @@ import { loadProfile } from "../../storage/loadProfile";
 import { loadToken } from "../../storage/load";
 import { getProfileVenues } from "../../api/getProfileVenues";
 import VenueCard from "../../components/ui/venueCard";
+import { toast, ToastContainer } from "react-toastify";
+import { NavLink } from "react-router-dom";
+import Button from "../../components/ui/Button";
 
 const VenueManager = () => {
   const [profile, setProfile] = useState(null);
@@ -20,26 +23,26 @@ const VenueManager = () => {
   const profileData = loadProfile();
   const name = profileData?.name;
 
-  useEffect(() => {
-    const fetchVenues = async () => {
-      try {
-        const data = await getProfileVenues(name, accessToken);
-
-        if (data && data.data) {
-          setVenues(data.data);
-        } else {
-          console.error(
-            "Venues fetch failed or returned unexpected structure:",
-            data
-          );
-        }
-      } catch (error) {
-        console.error("Error fetching venues:", error);
-      } finally {
-        setLoading(false);
+  // ✅ Extracted fetchVenues so we can reuse it
+  const fetchVenues = async () => {
+    try {
+      const data = await getProfileVenues(name, accessToken);
+      if (data && data.data) {
+        setVenues(data.data);
+      } else {
+        console.error(
+          "Venues fetch failed or returned unexpected structure:",
+          data
+        );
       }
-    };
+    } catch (error) {
+      console.error("Error fetching venues:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchVenues();
   }, [name, accessToken]);
 
@@ -47,7 +50,6 @@ const VenueManager = () => {
     const fetchProfile = async () => {
       try {
         const data = await getProfile(name, accessToken);
-
         if (data && data.data) {
           setProfile(data.data);
         } else {
@@ -80,8 +82,6 @@ const VenueManager = () => {
 
     try {
       const updated = await updateProfile(name, accessToken, updatedData);
-      console.log("Update result:", updated);
-
       if (updated.errors) {
         console.error("Update failed:", updated.errors);
         alert("Update failed: " + updated.errors[0]?.message);
@@ -95,16 +95,18 @@ const VenueManager = () => {
       alert("Update error: " + error.message);
     }
   };
+
   return (
     <>
+      <ToastContainer />
       <div className="container p-4">
         <h1 className="text-xl font-bold mb-2 text-[#2b615b]">My Profile</h1>
+
         <ProfileDetails
           profile={profile}
           loading={loading}
           onEdit={() => setIsModalOpen(true)}
         />
-
         <ProfileModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
@@ -115,15 +117,35 @@ const VenueManager = () => {
           <ProfileUpdateForm profile={profile} onUpdate={handleUpdate} />
         </ProfileModal>
       </div>
-      <div className="container p-4 ">
-        <div className="   bg-amber-50  rounded shadow">
-          <h3 className="ml-8 font-bold  text-[#2b615b]">My Venues</h3>
-          <div className="venue-list grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+
+      <div className="container p-4">
+        <div className="bg-amber-50 rounded shadow">
+          <div className="flex justify-between">
+            <h3 className=" font-bold text-[#2b615b] m-4 ">Venues</h3>
+            <NavLink to="/createVenue">
+              {({ isActive }) => (
+                <Button
+                  className="m-4"
+                  variant={
+                    isActive ? " profileDetailActive" : "profileDetailInactive"
+                  }
+                >
+                  Create Venue
+                </Button>
+              )}
+            </NavLink>
+          </div>
+          <div className="venue-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
             {venues.length === 0 ? (
               <p>No venues found.</p>
             ) : (
               venues.map((venue) => (
-                <VenueCard key={venue.id} venue={venue} showActions={true} />
+                <VenueCard
+                  key={venue.id}
+                  venue={venue}
+                  showActions={true}
+                  onDelete={fetchVenues} // ✅ Refresh venue list after deletion
+                />
               ))
             )}
           </div>

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { deleteVenue } from "../../api/deleteVenue";
+import { toast, ToastContainer } from "react-toastify";
 
-function VenueCard({ venue, showActions }) {
+function VenueCard({ venue, showActions, onDelete }) {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   let description = venue.description;
@@ -9,8 +11,27 @@ function VenueCard({ venue, showActions }) {
     description = description.substring(0, 70) + "...";
   }
 
+  const handleDelete = async () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this venue?"
+    );
+    if (!confirmed) return;
+
+    try {
+      await deleteVenue(venue.id);
+      toast.success("Venue deleted successfully");
+      if (onDelete) {
+        onDelete(venue.id); // Let the parent know to refresh
+      }
+    } catch (error) {
+      console.error("Failed to delete venue", error);
+      toast.error("Failed to delete venue");
+    }
+  };
+
   return (
     <div className="flex flex-col border bg-white rounded-md p-4 shadow-sm">
+      <ToastContainer position="top-center" autoClose={1000} />
       <Link to={`/singleVenue/${venue.id}`}>
         <img
           src={
@@ -58,8 +79,8 @@ function VenueCard({ venue, showActions }) {
             Edit
           </button>
           <button
-            className="bg-[#4E928A] text-white rounded hover:bg-[#3d746e] "
-            onClick={() => console.log("Delete", venue.id)}
+            className="bg-[#4E928A] text-white rounded hover:bg-[#3d746e]"
+            onClick={handleDelete}
           >
             Delete
           </button>

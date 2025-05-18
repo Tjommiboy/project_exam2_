@@ -1,5 +1,6 @@
 import Spinner from "./Spinner";
 import Button from "./Button";
+import { NavLink } from "react-router-dom";
 
 const ProfileDetails = ({ profile, loading, onEdit }) => {
   if (loading || !profile || !profile.avatar) {
@@ -22,7 +23,7 @@ const ProfileDetails = ({ profile, loading, onEdit }) => {
           <h2 className="text-xl font-bold text-black">{profile.name}</h2>
           <p className="text-black w-90">{profile.bio}</p>
         </div>
-        <div>
+        <div className="">
           {" "}
           <button
             variant="ghost"
