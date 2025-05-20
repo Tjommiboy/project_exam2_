@@ -9,15 +9,16 @@ import {
   FaRegCheckCircle,
   FaRegTimesCircle,
 } from "react-icons/fa";
+import BookingForm from "../../components/ui/BookingForm";
 
 const SingleVenue = () => {
   const [venue, setVenue] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const [nights, setNights] = useState(0);
-  const [checkInDate, setCheckInDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("");
-  const [guests, setGuests] = useState(1);
+  // const [nights, setNights] = useState(0);
+  // const [checkInDate, setCheckInDate] = useState("");
+  // const [checkOutDate, setCheckOutDate] = useState("");
+  // const [guests, setGuests] = useState(1);
   const [imageIndex, setImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -35,18 +36,18 @@ const SingleVenue = () => {
     }
   };
 
-  const pricePerNight = venue?.data?.price || 0;
-  const totalPrice = pricePerNight * nights;
-  useEffect(() => {
-    if (checkInDate && checkOutDate) {
-      const checkIn = new Date(checkInDate);
-      const checkOut = new Date(checkOutDate);
-      const diffTime = checkOut - checkIn;
+  // const pricePerNight = venue?.data?.price || 0;
+  // const totalPrice = pricePerNight * nights;
+  // useEffect(() => {
+  //   if (checkInDate && checkOutDate) {
+  //     const checkIn = new Date(checkInDate);
+  //     const checkOut = new Date(checkOutDate);
+  //     const diffTime = checkOut - checkIn;
 
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      setNights(diffDays > 0 ? diffDays : 0);
-    }
-  }, [checkInDate, checkOutDate]);
+  //     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  //     setNights(diffDays > 0 ? diffDays : 0);
+  //   }
+  // }, [checkInDate, checkOutDate]);
 
   useEffect(() => {
     const fetchVenue = async () => {
@@ -184,75 +185,11 @@ const SingleVenue = () => {
               </div>
             </div>
           </div>
-          <div className="bg-amber-50 flex justify-center  p-6 rounded-lg">
-            <div className="bg-white p-6 rounded shadow-md w-80 text-sm">
-              <div className="flex flex-col gap-4">
-                <div className="flex gap-2 justify-center text-gray-500">
-                  <input
-                    type="date"
-                    className="border p-2 rounded w-full"
-                    value={checkInDate}
-                    onChange={(e) => setCheckInDate(e.target.value)}
-                  />
-
-                  <input
-                    type="date"
-                    className="border p-2 rounded w-full"
-                    value={checkOutDate}
-                    onChange={(e) => setCheckOutDate(e.target.value)}
-                    min={checkInDate}
-                  />
-                </div>
-                <label
-                  htmlFor="Guests"
-                  className="block  text-gray-500 font-medium"
-                >
-                  Guests:
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  max={venue.data.maxGuests} // <-- This makes sure users can't select more than allowed
-                  placeholder="Guests"
-                  className="border p-2 rounded text-gray-500 w-full"
-                  value={guests}
-                  onChange={(e) => setGuests(Number(e.target.value))}
-                />
-                <div className="p-4 bg-amber-50 max-w-md mx-auto rounded">
-                  <label
-                    htmlFor="nights"
-                    className="block mb-2 text-gray-500 font-medium"
-                  >
-                    Number of Nights:
-                  </label>
-                  <input
-                    id="nights"
-                    type="number"
-                    min="1"
-                    value={nights}
-                    onChange={(e) => setNights(Number(e.target.value))}
-                    className="w-full border border-gray-300 rounded text-gray-500 p-2 mb-4"
-                  />
-
-                  <p className="flex justify-between text-gray-500">
-                    ${pricePerNight} × {nights} night{nights > 1 ? "s" : ""}
-                    <span className="font-medium text-gray-500">
-                      ${totalPrice}
-                    </span>
-                  </p>
-
-                  <p className="flex justify-between mt-2 text-gray-500">
-                    Total:
-                    <span className="font-bold">${totalPrice}</span>
-                  </p>
-
-                  <button className="mt-4 w-full bg-gray-700 text-white py-2 rounded hover:bg-gray-800">
-                    Book
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <BookingForm
+            venueId={venue.data.id}
+            maxGuests={venue.data.maxGuests}
+            pricePerNight={venue.data.price}
+          />
         </div>
       ) : (
         <p>Venue not found.</p>
