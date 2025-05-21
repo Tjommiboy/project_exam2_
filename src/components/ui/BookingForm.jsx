@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { createBooking } from "../../api/CreateBooking";
 import { toast, ToastContainer } from "react-toastify";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const BookingForm = ({ venueId, maxGuests, pricePerNight = 0 }) => {
   const getTodayDate = () => {
@@ -11,29 +13,27 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0 }) => {
     return `${yyyy}-${mm}-${dd}`;
   };
 
-  const addDays = (dateStr, days) => {
-    const date = new Date(dateStr);
-    date.setDate(date.getDate() + days);
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, "0");
-    const dd = String(date.getDate()).padStart(2, "0");
-    return `${yyyy}-${mm}-${dd}`;
+  const addDays = (date, days) => {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
   };
 
   const today = getTodayDate();
-
-  const [checkInDate, setCheckInDate] = useState(today);
-  const [checkOutDate, setCheckOutDate] = useState(today, 1);
+  const [checkInDate, setCheckInDate] = useState(new Date());
+  const [checkOutDate, setCheckOutDate] = useState(addDays(new Date(), 1));
   const [guests, setGuests] = useState(1);
   const [nights, setNights] = useState(1);
 
   const totalPrice = nights * pricePerNight;
 
   useEffect(() => {
-    if (checkOutDate <= checkInDate) {
+    const checkIn = new Date(checkInDate);
+    const checkOut = new Date(checkOutDate);
+    if (checkOut <= checkIn) {
       setCheckOutDate(addDays(checkInDate, 1));
     }
-  }, [checkInDate]);
+  }, [checkInDate, checkOutDate]);
 
   useEffect(() => {
     if (checkInDate && checkOutDate) {
@@ -70,20 +70,30 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0 }) => {
       <div className="bg-white p-6 rounded shadow-md w-80 text-sm">
         <div className="flex flex-col gap-4">
           <div className="flex gap-2 justify-center text-gray-500">
-            <input
-              type="date"
-              className="border p-2 rounded w-full"
-              value={checkInDate}
-              onChange={(e) => setCheckInDate(e.target.value)}
-            />
-
-            <input
-              type="date"
-              className="border p-2 rounded w-full"
-              value={checkOutDate}
-              onChange={(e) => setCheckOutDate(e.target.value)}
-              min={checkInDate}
-            />
+            <div className="flex gap-2 justify-center text-gray-500">
+              <DatePicker
+                selected={checkInDate}
+                onChange={(date) => setCheckInDate(date)}
+                selectsStart
+                startDate={checkInDate}
+                endDate={checkOutDate}
+                minDate={new Date()}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Check-in"
+                className="border p-2 rounded w-full"
+              />
+              <DatePicker
+                selected={checkOutDate}
+                onChange={(date) => setCheckOutDate(date)}
+                selectsEnd
+                startDate={checkInDate}
+                endDate={checkOutDate}
+                minDate={checkInDate}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Check-out"
+                className="border p-2 rounded w-full"
+              />
+            </div>
           </div>
 
           <label htmlFor="Guests" className="text-gray-500 font-medium">

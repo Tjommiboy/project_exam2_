@@ -15,10 +15,6 @@ const SingleVenue = () => {
   const [venue, setVenue] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  // const [nights, setNights] = useState(0);
-  // const [checkInDate, setCheckInDate] = useState("");
-  // const [checkOutDate, setCheckOutDate] = useState("");
-  // const [guests, setGuests] = useState(1);
   const [imageIndex, setImageIndex] = useState(0);
 
   const nextImage = () => {

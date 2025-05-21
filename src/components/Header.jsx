@@ -33,7 +33,7 @@ function Header() {
   useEffect(() => {
     // Check if screen width is under 600px
     const handleResize = () => {
-      if (window.innerWidth <= 600) {
+      if (window.innerWidth <= 665) {
         setIsMobile(true);
       } else {
         setIsMobile(false);
