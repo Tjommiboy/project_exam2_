@@ -83,6 +83,7 @@ const VenueManager = () => {
       setBookings([]);
     }
   };
+
   const handleVenueClick = (venue) => {
     if (!venue || !venue.id) {
       console.warn("handleVenueClick called without a valid venue", venue);
@@ -124,8 +125,10 @@ const VenueManager = () => {
   return (
     <>
       <ToastContainer />
-      <div className="container p-4">
-        <h1 className="text-xl font-bold mb-2 text-[#2b615b]">My Profile</h1>
+      <div className="container mx-auto p-4 max-w-7xl">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-[#2b615b] text-center sm:text-left">
+          My Profile
+        </h1>
 
         <ProfileDetails
           profile={profile}
@@ -143,16 +146,18 @@ const VenueManager = () => {
         </ProfileModal>
       </div>
 
-      <div className="container p-4">
+      <div className="container mx-auto p-4 max-w-7xl">
         <div className="bg-amber-50 rounded shadow">
-          <div className="flex justify-between">
-            <h3 className=" font-bold text-[#2b615b] m-4 ">Venues</h3>
-            <NavLink to="/createVenue">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4">
+            <h3 className="font-bold text-[#2b615b] text-xl mb-4 sm:mb-0">
+              Venues
+            </h3>
+            <NavLink to="/createVenue" className="w-full sm:w-auto">
               {({ isActive }) => (
                 <Button
-                  className="m-4"
+                  className="w-full sm:w-auto"
                   variant={
-                    isActive ? " profileDetailActive" : "profileDetailInactive"
+                    isActive ? "profileDetailActive" : "profileDetailInactive"
                   }
                 >
                   Create Venue
@@ -160,23 +165,24 @@ const VenueManager = () => {
               )}
             </NavLink>
           </div>
+
           {selectedVenue ? (
             <div className="p-6">
               <button
-                className="mb-4 text-[#4E928A] hover:underline"
+                className="mb-4 text-[#4E928A] hover:underline text-sm"
                 onClick={() => setSelectedVenue(null)}
               >
                 ← Back to venues
               </button>
-              <div className="flex gap-4">
-                <div className="bg-white rounded shadow p-4 ">
+              <div className="flex flex-col lg:flex-row gap-6">
+                <div className="bg-white rounded shadow p-4 flex-shrink-0 lg:w-1/2">
                   <img
                     src={
                       selectedVenue.media?.[0]?.url ||
                       "https://images.unsplash.com/photo-1678225105802-01949b1dff0d"
                     }
                     alt={selectedVenue.media?.[0]?.alt || selectedVenue.name}
-                    className="w-full h-64 object-cover rounded mb-4"
+                    className="w-full h-64 sm:h-80 object-cover rounded mb-4"
                   />
                   <h2 className="text-2xl font-bold text-[#2b615b]">
                     {selectedVenue.name}
@@ -196,41 +202,44 @@ const VenueManager = () => {
                     Price: ${selectedVenue.price}
                   </p>
                 </div>
-                {bookings.length > 0 ? (
-                  <div className="mt-6">
-                    <h3 className="text-lg font-semibold text-[#2b615b] mb-2">
-                      Bookings for this venue:
-                    </h3>
-                    <ul className="space-y-2">
-                      {bookings.map((booking) => (
-                        <li
-                          key={booking.id}
-                          className="bg-gray-100 p-2 rounded shadow-sm text-sm"
-                        >
-                          🗓️ From{" "}
-                          <strong>
-                            {new Date(booking.dateFrom).toLocaleDateString()}
-                          </strong>{" "}
-                          to{" "}
-                          <strong>
-                            {new Date(booking.dateTo).toLocaleDateString()}
-                          </strong>{" "}
-                          • Guests: <strong>{booking.guests}</strong>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : (
-                  <p className="mt-4 text-sm text-gray-600">
-                    No bookings for this venue.
-                  </p>
-                )}
+
+                <div className="mt-6 lg:mt-0 lg:w-1/2">
+                  {bookings.length > 0 ? (
+                    <>
+                      <h3 className="text-lg font-semibold text-[#2b615b] mb-2">
+                        Bookings for this venue:
+                      </h3>
+                      <ul className="space-y-2 max-h-[300px] overflow-y-auto">
+                        {bookings.map((booking) => (
+                          <li
+                            key={booking.id}
+                            className="bg-gray-100 p-3 rounded shadow-sm text-sm"
+                          >
+                            🗓️ From{" "}
+                            <strong>
+                              {new Date(booking.dateFrom).toLocaleDateString()}
+                            </strong>{" "}
+                            to{" "}
+                            <strong>
+                              {new Date(booking.dateTo).toLocaleDateString()}
+                            </strong>{" "}
+                            • Guests: <strong>{booking.guests}</strong>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <p className="mt-4 text-sm text-gray-600">
+                      No bookings for this venue.
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           ) : (
             <div className="venue-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
               {venues.length === 0 ? (
-                <p>No venues found.</p>
+                <p className="text-center w-full">No venues found.</p>
               ) : (
                 venues.map((venue) => (
                   <VenueCard

@@ -31,7 +31,7 @@ const CreateVenuePage = () => {
 
   return (
     <div className="p-6">
-      <ToastContainer position="top-right" autoClose={1500} />
+      <ToastContainer position="top-right" autoClose={100} />
       {isSubmitting && <p className="text-blue-600 mb-4">Creating venue...</p>}
       <CreateVenueForm onSubmit={handleVenueSubmit} />
     </div>

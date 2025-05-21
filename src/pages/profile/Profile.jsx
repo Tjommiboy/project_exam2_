@@ -73,12 +73,14 @@ const Profile = () => {
   return (
     <div className="container p-4">
       <h1 className="text-xl font-bold mb-2 text-[#2b615b]">My Profile</h1>
-      <div className="flex">
-        <ProfileDetails
-          profile={profile}
-          loading={loading}
-          onEdit={() => setIsModalOpen(true)}
-        />
+      <div className="flex gap-4">
+        <div className="w-full max-w-md">
+          <ProfileDetails
+            profile={profile}
+            loading={loading}
+            onEdit={() => setIsModalOpen(true)}
+          />
+        </div>
         <ProfileBookings />
       </div>
       <ProfileModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
