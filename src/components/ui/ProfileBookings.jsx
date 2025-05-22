@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { profileBookings } from "../../api/ProfileBooking"; // adjust path if needed
-
+import { profileBookings } from "../../api/ProfileBooking";
 export default function ProfileBookings() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +24,9 @@ export default function ProfileBookings() {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4 text-[#4E928A]">Bookings</h2>
+      <div>
+        <h1 className="text-xl font-bold mb-2 text-[#4E928A]">Bookings</h1>
+      </div>
       <ul className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4 text-[#4E928A]">
         {bookings.map((booking) => {
           const venue = booking.venue;
@@ -33,9 +34,7 @@ export default function ProfileBookings() {
           return (
             <li key={booking.id} className="p-4 border rounded shadow">
               <img
-                src={
-                  venue?.media?.[0]?.url || "https://via.placeholder.com/300"
-                }
+                src={venue?.media?.[0]?.url || "https://placehold.co/300x200"}
                 alt={venue?.media?.[0]?.alt || "Venue image"}
                 className="w-full h-48 object-cover mb-2 rounded"
               />

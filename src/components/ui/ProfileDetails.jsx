@@ -12,27 +12,32 @@ const ProfileDetails = ({ profile, loading, onEdit }) => {
   }
 
   return (
-    <div className="flex">
-      <div className="flex bg-amber-50 rounded-bl-[100px] rounded-tr-[100px] shadow">
-        <img
-          src={profile.avatar?.url}
-          alt={profile.avatar?.alt || "Avatar"}
-          className="w-46 h-60 rounded-bl-[100px]"
-        />
-        <div>
-          <div className="m-4">
-            <h2 className="text-xl font-bold text-black">{profile.name}</h2>
-            <p className="text-black w-90">{profile.bio}</p>
-          </div>
-          <div className="">
-            {" "}
-            <button
-              variant="ghost"
-              className="bg-[#4E928A] text-white mt-9 rounded hover:bg-[#3d746e] m-2"
-              onClick={onEdit}
-            >
-              Edit Profile
-            </button>
+    <div className="">
+      <div>
+        <h1 className="text-xl font-bold mb-2 text-[#4E928A]">My Profile</h1>
+      </div>
+      <div>
+        <div className="flex bg-amber-50 rounded-bl-[100px] rounded-tr-[100px] shadow">
+          <img
+            src={profile.avatar?.url}
+            alt={profile.avatar?.alt || "Avatar"}
+            className="w-46 h-60 rounded-bl-[100px]"
+          />
+          <div>
+            <div className="m-4">
+              <h2 className="text-xl font-bold text-black">{profile.name}</h2>
+              <p className="text-black w-90">{profile.bio}</p>
+            </div>
+            <div className="">
+              {" "}
+              <button
+                variant="ghost"
+                className="bg-[#4E928A] text-white mt-1 rounded hover:bg-[#3d746e] m-2"
+                onClick={onEdit}
+              >
+                Edit Profile
+              </button>
+            </div>
           </div>
         </div>
       </div>
