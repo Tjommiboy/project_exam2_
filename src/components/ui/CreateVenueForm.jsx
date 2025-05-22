@@ -81,7 +81,7 @@ const CreateVenueForm = ({ onSubmit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-[900px] flex space-y-4 p-4 mx-auto bg-amber-50 gap-4 rounded"
+      className="w-full max-w-[900px] flex flex-col md:flex-row p-4 mx-auto bg-amber-50 gap-4 rounded"
     >
       <div>
         <h2 className="text-xl font-bold text-[#2b615b]">Create Venue</h2>
@@ -167,7 +167,7 @@ const CreateVenueForm = ({ onSubmit }) => {
         </fieldset>
       </div>
       <div>
-        <fieldset className="border p-3 rounded color-[#4E928A] text-[#2b615b] mt-11">
+        <fieldset className="border p-3 rounded color-[#4E928A] text-[#2b615b] mt-1 md:mt-11">
           <legend className="text-sm font-medium">Location</legend>
           {["address", "city", "zip", "country", "continent", "lat", "lng"].map(
             (key) => (

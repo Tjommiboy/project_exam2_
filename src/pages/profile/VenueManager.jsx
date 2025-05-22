@@ -126,10 +126,6 @@ const VenueManager = () => {
     <>
       <ToastContainer />
       <div className="container mx-auto p-4 max-w-7xl">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-[#2b615b] text-center sm:text-left">
-          My Profile
-        </h1>
-
         <ProfileDetails
           profile={profile}
           loading={loading}
@@ -155,7 +151,7 @@ const VenueManager = () => {
             <NavLink to="/createVenue" className="w-full sm:w-auto">
               {({ isActive }) => (
                 <Button
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto bg-[#4E928A] text-white rounded hover:bg-[#3d746e] "
                   variant={
                     isActive ? "profileDetailActive" : "profileDetailInactive"
                   }
@@ -213,7 +209,7 @@ const VenueManager = () => {
                         {bookings.map((booking) => (
                           <li
                             key={booking.id}
-                            className="bg-gray-100 p-3 rounded shadow-sm text-sm"
+                            className="bg-amber-500 p-3 rounded shadow-sm text-sm"
                           >
                             🗓️ From{" "}
                             <strong>
@@ -237,7 +233,7 @@ const VenueManager = () => {
               </div>
             </div>
           ) : (
-            <div className="venue-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+            <div className="venue-list grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
               {venues.length === 0 ? (
                 <p className="text-center w-full">No venues found.</p>
               ) : (

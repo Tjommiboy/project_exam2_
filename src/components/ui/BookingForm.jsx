@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const BookingForm = ({ venueId, maxGuests, pricePerNight = 0 }) => {
+const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
   const getTodayDate = () => {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -44,6 +44,21 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0 }) => {
       setNights(diffDays > 0 ? diffDays : 0);
     }
   }, [checkInDate, checkOutDate]);
+  function isBookingAvailable(dateFrom, dateTo, bookings) {
+    const newStart = new Date(dateFrom);
+    const newEnd = new Date(dateTo);
+
+    return !bookings.some((booking) => {
+      const existingStart = new Date(booking.dateFrom);
+      const existingEnd = new Date(booking.dateTo);
+      return newStart < existingEnd && existingStart < newEnd;
+    });
+  }
+  const bookedDateRanges =
+    bookings?.map((booking) => ({
+      start: new Date(booking.dateFrom),
+      end: new Date(booking.dateTo),
+    })) || [];
 
   const handleBooking = async () => {
     const bookingData = {
@@ -53,8 +68,13 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0 }) => {
       venueId,
     };
 
-    console.log("Booking payload:", bookingData);
-    console.log("venueId:", venueId);
+    const available = isBookingAvailable(checkInDate, checkOutDate, bookings);
+
+    if (!available) {
+      toast.error("Selected dates overlap with an existing booking.");
+      return;
+    }
+
     try {
       await createBooking(bookingData);
       toast.success("Booking created successfully!");
@@ -78,10 +98,12 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0 }) => {
                 startDate={checkInDate}
                 endDate={checkOutDate}
                 minDate={new Date()}
+                excludeDateIntervals={bookedDateRanges}
                 dateFormat="yyyy-MM-dd"
                 placeholderText="Check-in"
                 className="border p-2 rounded w-full"
               />
+
               <DatePicker
                 selected={checkOutDate}
                 onChange={(date) => setCheckOutDate(date)}
@@ -89,6 +111,7 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0 }) => {
                 startDate={checkInDate}
                 endDate={checkOutDate}
                 minDate={checkInDate}
+                excludeDateIntervals={bookedDateRanges}
                 dateFormat="yyyy-MM-dd"
                 placeholderText="Check-out"
                 className="border p-2 rounded w-full"

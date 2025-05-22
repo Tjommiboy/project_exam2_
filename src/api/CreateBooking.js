@@ -1,5 +1,5 @@
 import { loadToken } from "../storage/load";
-import { API_KEY, MAKE_BOOKING } from "./constants/";
+import { API_KEY, CREATE_BOOKING } from "./constants/";
 
 export async function createBooking({ dateFrom, dateTo, guests, venueId }) {
   const accessToken = loadToken();
@@ -9,7 +9,7 @@ export async function createBooking({ dateFrom, dateTo, guests, venueId }) {
 
   console.log("Sending booking payload:", payload);
 
-  const response = await fetch(`${MAKE_BOOKING}`, {
+  const response = await fetch(`${CREATE_BOOKING}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -71,25 +71,19 @@ const Profile = () => {
     }
   };
   return (
-    <div className="container p-4">
-      <div className="flex gap-4">
-        <div className="w-full max-w-md">
-          <ProfileDetails
-            profile={profile}
-            loading={loading}
-            onEdit={() => setIsModalOpen(true)}
-          />
-        </div>
-        <div>
-          <ProfileBookings />
-        </div>
-      </div>
+    <div className="container mx-auto p-4 max-w-7xl">
+      <ProfileDetails
+        profile={profile}
+        loading={loading}
+        onEdit={() => setIsModalOpen(true)}
+      />
       <ProfileModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2 className="text-xl font-semibold mb-4 text-[#2b615b]">
           Edit Profile
         </h2>
         <ProfileUpdateForm profile={profile} onUpdate={handleUpdate} />
       </ProfileModal>
+      <ProfileBookings />
     </div>
   );
 };

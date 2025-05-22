@@ -8,12 +8,15 @@ export async function profileBookings() {
   const profileName = loadProfile().name; // assuming loadProfile() returns an object with `.name`
 
   try {
-    const response = await fetch(`${PROFILE}/${profileName}/bookings`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "X-Noroff-API-Key": apiKey,
-      },
-    });
+    const response = await fetch(
+      `${PROFILE}/${profileName}/bookings?_venue=true`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+      }
+    );
     if (!response.ok) {
       console.error(
         "Failed to fetch profile bookings. Status:",

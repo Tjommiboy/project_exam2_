@@ -25,14 +25,17 @@ export default function ProfileBookings() {
   return (
     <div>
       <div>
-        <h1 className="text-xl font-bold mb-2 text-[#4E928A]">Bookings</h1>
+        <h2 className="text-xl font-bold mb-2 text-[#4E928A] mt-8">
+          {" "}
+          Bookings
+        </h2>
       </div>
       <ul className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4 text-[#4E928A]">
         {bookings.map((booking) => {
           const venue = booking.venue;
 
           return (
-            <li key={booking.id} className="p-4 border rounded shadow">
+            <li key={booking.id} className="p-4  rounded shadow bg-amber-50">
               <img
                 src={venue?.media?.[0]?.url || "https://placehold.co/300x200"}
                 alt={venue?.media?.[0]?.alt || "Venue image"}
@@ -41,9 +44,7 @@ export default function ProfileBookings() {
               <h3 className="text-lg font-semibold">
                 {venue?.name || "Unknown venue"}
               </h3>
-              <p>
-                <strong>Booking ID:</strong> {booking.id}
-              </p>
+
               <p>
                 <strong>From:</strong>{" "}
                 {new Date(booking.dateFrom).toLocaleDateString()}

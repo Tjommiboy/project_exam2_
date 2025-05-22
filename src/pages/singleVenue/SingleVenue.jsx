@@ -32,25 +32,12 @@ const SingleVenue = () => {
     }
   };
 
-  // const pricePerNight = venue?.data?.price || 0;
-  // const totalPrice = pricePerNight * nights;
-  // useEffect(() => {
-  //   if (checkInDate && checkOutDate) {
-  //     const checkIn = new Date(checkInDate);
-  //     const checkOut = new Date(checkOutDate);
-  //     const diffTime = checkOut - checkIn;
-
-  //     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  //     setNights(diffDays > 0 ? diffDays : 0);
-  //   }
-  // }, [checkInDate, checkOutDate]);
-
   useEffect(() => {
     const fetchVenue = async () => {
       try {
-        const response = await fetch(`${SINGLEVENUES}/${id}`);
+        const response = await fetch(`${SINGLEVENUES}/${id}?_bookings=true`);
         const data = await response.json();
-        console.log(data);
+        console.log("Fetched venue with bookings:", data);
         setVenue(data);
       } catch (error) {
         console.error("Error fetching venue:", error);
@@ -60,7 +47,7 @@ const SingleVenue = () => {
     };
 
     fetchVenue();
-  }, []);
+  }, [id]);
 
   return (
     <div className="flex min-h-screen">
@@ -185,6 +172,7 @@ const SingleVenue = () => {
             venueId={venue.data.id}
             maxGuests={venue.data.maxGuests}
             pricePerNight={venue.data.price}
+            bookings={venue.data.bookings}
           />
         </div>
       ) : (
