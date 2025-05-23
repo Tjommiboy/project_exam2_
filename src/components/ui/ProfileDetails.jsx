@@ -28,8 +28,10 @@ const ProfileDetails = ({ profile, loading, onEdit }) => {
           />
           <div className="flex flex-col justify-between p-4 md:w-1/2">
             <div>
-              <h2 className="text-xl font-bold text-black">{profile.name}</h2>
-              <p className="text-black mb-2">{profile.bio}</p>
+              <h3 className="text-xl font-bold text-[#4E928A]">
+                {profile.name}
+              </h3>
+              <p className="text-gray-500 mb-2">{profile.bio}</p>
             </div>
             <div className="flex justify-end">
               <button

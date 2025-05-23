@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { deleteVenue } from "../../api/deleteVenue";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function VenueCard({
   venue,
@@ -11,6 +12,7 @@ function VenueCard({
   disableLink = false,
 }) {
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const navigate = useNavigate();
 
   const DESCRIPTION_LIMIT = 70;
   const fullDescription = venue.description || "";
@@ -114,7 +116,7 @@ function VenueCard({
             className="bg-[#4E928A] text-white rounded  z-10 hover:bg-[#3d746e]"
             onClick={(e) => {
               e.stopPropagation();
-              if (onEdit) onEdit(venue);
+              navigate(`/venues/${venue.id}/edit`);
             }}
           >
             Edit

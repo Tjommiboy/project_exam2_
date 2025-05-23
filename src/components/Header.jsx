@@ -54,11 +54,12 @@ function Header() {
     <header className="sticky top-0 z-50">
       <div className="bg-[#4E928A] px-6 py-4">
         <div className="flex justify-between items-center">
-          <Link to="/">
-            <h1 className="text-white text-xl font-bold  ">Holidaze</h1>
-          </Link>
+          <div className={`${isMobile ? "flex-1 flex justify-center" : ""}`}>
+            <Link to="/">
+              <h1 className="text-white text-xl font-bold">Holidaze</h1>
+            </Link>
+          </div>
 
-          {/* Show the hamburger menu on small screens */}
           {isMobile ? (
             <button
               onClick={toggleMenu}
@@ -70,14 +71,17 @@ function Header() {
             <div className="flex gap-2">
               {!loggedIn ? (
                 <>
-                  <NavLink to="/login">
+                  <NavLink to="/login" onClick={() => setIsMenuOpen(false)}>
                     {({ isActive }) => (
                       <Button variant={isActive ? "active" : "inactive"}>
                         Login
                       </Button>
                     )}
                   </NavLink>
-                  <NavLink to="/register/Customer">
+                  <NavLink
+                    to="/register/Customer"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     {({ isActive }) => (
                       <Button variant={isActive ? "active" : "inactive"}>
                         Register
@@ -89,14 +93,20 @@ function Header() {
                 <>
                   {isVenueManager ? (
                     <>
-                      <NavLink to="/venueManager">
+                      <NavLink
+                        to="/venueManager"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
                         {({ isActive }) => (
                           <Button variant={isActive ? "active" : "inactive"}>
                             Venue Manager
                           </Button>
                         )}
                       </NavLink>
-                      <NavLink to="/createVenue">
+                      <NavLink
+                        to="/createVenue"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
                         {({ isActive }) => (
                           <Button variant={isActive ? "active" : "inactive"}>
                             Create Venue
@@ -105,7 +115,7 @@ function Header() {
                       </NavLink>
                     </>
                   ) : (
-                    <NavLink to="/profile">
+                    <NavLink to="/profile" onClick={() => setIsMenuOpen(false)}>
                       {({ isActive }) => (
                         <Button variant={isActive ? "active" : "inactive"}>
                           Profile
@@ -121,17 +131,20 @@ function Header() {
         </div>
 
         {isMobile && isMenuOpen && (
-          <div className="flex flex-col items-center mt-4 md:hidden">
+          <div className="fixed top-16 right-0 w-1/2  bg-[#4E928A] shadow-lg z-50 flex flex-col items-start gap-2 px-4 py-6 md:hidden">
             {!loggedIn ? (
               <>
-                <NavLink to="/login">
+                <NavLink to="/login" onClick={() => setIsMenuOpen(false)}>
                   {({ isActive }) => (
                     <Button variant={isActive ? "active" : "inactive"}>
                       Login
                     </Button>
                   )}
                 </NavLink>
-                <NavLink to="/register/Customer">
+                <NavLink
+                  to="/register/Customer"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   {({ isActive }) => (
                     <Button variant={isActive ? "active" : "inactive"}>
                       Register
@@ -143,14 +156,20 @@ function Header() {
               <>
                 {isVenueManager ? (
                   <>
-                    <NavLink to="/venueManager">
+                    <NavLink
+                      to="/venueManager"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {({ isActive }) => (
                         <Button variant={isActive ? "active" : "inactive"}>
                           Venue Manager
                         </Button>
                       )}
                     </NavLink>
-                    <NavLink to="/createVenue">
+                    <NavLink
+                      to="/createVenue"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {({ isActive }) => (
                         <Button variant={isActive ? "active" : "inactive"}>
                           Create Venue
@@ -159,7 +178,7 @@ function Header() {
                     </NavLink>
                   </>
                 ) : (
-                  <NavLink to="/profile">
+                  <NavLink to="/profile" onClick={() => setIsMenuOpen(false)}>
                     {({ isActive }) => (
                       <Button variant={isActive ? "active" : "inactive"}>
                         Profile

@@ -15,6 +15,7 @@ export const ALLVENUES = `${API_BASE}/holidaze/venues`;
 export const SINGLEVENUES = `${API_BASE}/holidaze/venues`;
 export const SEARCH = `${API_BASE}/holidaze/venues/search?q=<query>`;
 export const CREATE_VENUE = `${API_BASE}/holidaze/venues`;
+export const EDIT_VENUE = `${API_BASE}/holidaze/venues`;
 
 //Profiles
 
