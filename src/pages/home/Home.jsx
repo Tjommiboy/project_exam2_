@@ -75,11 +75,11 @@ function Home() {
       ) : (
         <p className="text-center mt-8">No venues found.</p>
       )}
-      <div className="flex justify-center flex-wrap gap-2 mt-8">
+      <div className="flex justify-center flex-wrap gap-2 mt-8  ">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className="px-3 py-1 border rounded hover:bg-[#4E928A] hover:text-white"
+          className="p border rounded hover:bg-[#4E928A] hover:text-white"
         >
           Prev
         </button>
@@ -109,7 +109,7 @@ function Home() {
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
-          className="px-3 py-1 border rounded hover:bg-[#4E928A] hover:text-white"
+          className=" border rounded hover:bg-[#4E928A] hover:text-white"
         >
           Next
         </button>

@@ -59,7 +59,7 @@ const EditVenuePage = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      <ToastContainer position="top-center" autoClose={1000} />
+      <ToastContainer autoClose={1000} />
       <CreateVenueForm
         initialData={venueData}
         isEditMode={true}

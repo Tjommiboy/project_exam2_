@@ -62,7 +62,7 @@ export default function ProfileBookings() {
               booking={booking}
               showActions={true}
               cardType="booking"
-              onDelete={handleDeleteBooking}
+              onDelete={() => handleDeleteBooking(booking.id)} // pass booking.id
             />
           </li>
         ))}

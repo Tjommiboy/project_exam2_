@@ -33,29 +33,6 @@ function VenueCard({
     }
   };
 
-  const handleDelete = async (e) => {
-    e.stopPropagation();
-    const confirmed = window.confirm(
-      `Are you sure you want to delete this ${cardType}?`
-    );
-    if (!confirmed) return;
-
-    try {
-      if (cardType === "venue") {
-        await VenueDelete(venue.id);
-        toast.success("Venue deleted successfully");
-        onDelete?.(venue.id);
-      } else if (cardType === "booking") {
-        await bookingDelete(booking.id);
-        toast.success("Booking deleted successfully");
-        onDelete?.(booking.id);
-      }
-    } catch (error) {
-      console.error(`Failed to delete ${cardType}`, error);
-      toast.error(`Failed to delete ${cardType}`);
-    }
-  };
-
   const cardContent = (
     <>
       <img
@@ -69,7 +46,7 @@ function VenueCard({
       <h2 className="text-xl text-gray-500 font-medium break-words">
         {venue.name.length > 16 ? venue.name.slice(0, 16) + "..." : venue.name}
       </h2>
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-gray-500 truncate">
         {venue.location?.city ?? "Unknown City"},{" "}
         {venue.location?.country ?? "Unknown Country"}
       </p>
@@ -116,7 +93,10 @@ function VenueCard({
           </button>
           <button
             className="bg-[#4E928A] text-white px-3 py-1 rounded hover:bg-[#3d746e]"
-            onClick={handleDelete}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete?.(); // call parent handler
+            }}
           >
             Delete
           </button>

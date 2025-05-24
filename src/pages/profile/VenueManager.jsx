@@ -12,6 +12,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import { getVenueBookings } from "../../api/getVenueBookings";
+import { VenueDelete } from "../../api/VenueDelete";
 
 const VenueManager = () => {
   const [profile, setProfile] = useState(null);
@@ -43,10 +44,25 @@ const VenueManager = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchVenues();
   }, [name, accessToken]);
+
+  const handleDelete = async (venueId) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this venue?"
+    );
+    if (!confirmed) return;
+
+    try {
+      await VenueDelete(venueId);
+      toast.success("Venue deleted successfully");
+      fetchVenues(); // refresh list after deletion
+    } catch (error) {
+      console.error("Failed to delete venue", error);
+      toast.error("Failed to delete venue");
+    }
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -124,7 +140,7 @@ const VenueManager = () => {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
       <div className="container mx-auto p-4 max-w-7xl">
         <ProfileDetails
           profile={profile}
@@ -243,7 +259,7 @@ const VenueManager = () => {
                     venue={venue}
                     showActions={true}
                     disableLink={true}
-                    onDelete={fetchVenues}
+                    onDelete={() => handleDelete(venue.id)}
                     onClick={() => {
                       setSelectedVenue(venue);
                       handleVenueClick(venue);
