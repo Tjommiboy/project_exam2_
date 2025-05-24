@@ -83,7 +83,7 @@ function VenueCard({
               ? venue.name.slice(0, 16) + "..."
               : venue.name}
           </h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 truncate">
             {venue.location.city}, {venue.location.country}
           </p>
           <p className="text-base text-gray-500 mt-1 break-words">

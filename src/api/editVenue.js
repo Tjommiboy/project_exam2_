@@ -1,11 +1,10 @@
 import { EDIT_VENUE, API_KEY } from "./constants";
 import { loadToken } from "../storage/load";
 
-export const UpdateVenue = async (e) => {
+export const editVenue = async (id, formData) => {
   const accessToken = loadToken();
-
   const apiKey = API_KEY;
-  e.preventDefault();
+
   try {
     const response = await fetch(`${EDIT_VENUE}/${id}`, {
       method: "PUT",
@@ -23,8 +22,11 @@ export const UpdateVenue = async (e) => {
 
     const updatedData = await response.json();
     console.log("Venue updated successfully:", updatedData);
-    // optionally navigate or give feedback
+
+    // ✅ return the response data
+    return updatedData;
   } catch (error) {
     console.error("Error updating venue:", error);
+    throw error; // rethrow so it can be handled in the caller
   }
 };

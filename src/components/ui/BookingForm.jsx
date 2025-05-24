@@ -3,6 +3,8 @@ import { createBooking } from "../../api/CreateBooking";
 import { toast, ToastContainer } from "react-toastify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { loadProfile } from "../../storage/loadProfile";
+import { useNavigate } from "react-router-dom";
 
 const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
   const getTodayDate = () => {
@@ -24,8 +26,15 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
   const [checkOutDate, setCheckOutDate] = useState(addDays(new Date(), 1));
   const [guests, setGuests] = useState(1);
   const [nights, setNights] = useState(1);
+  const [isVenueManager, setIsVenueManager] = useState(false);
+  const navigate = useNavigate();
 
   const totalPrice = nights * pricePerNight;
+
+  useEffect(() => {
+    const profile = loadProfile();
+    setIsVenueManager(profile?.venueManager === true);
+  }, []);
 
   useEffect(() => {
     const checkIn = new Date(checkInDate);
@@ -54,6 +63,7 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
       return newStart < existingEnd && existingStart < newEnd;
     });
   }
+
   const bookedDateRanges =
     bookings?.map((booking) => ({
       start: new Date(booking.dateFrom),
@@ -68,6 +78,11 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
       venueId,
     };
 
+    if (isVenueManager) {
+      toast.error("Venue managers cannot book venues.");
+      return;
+    }
+
     const available = isBookingAvailable(checkInDate, checkOutDate, bookings);
 
     if (!available) {
@@ -78,6 +93,9 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
     try {
       await createBooking(bookingData);
       toast.success("Booking created successfully!");
+      setTimeout(() => {
+        navigate("/profile/");
+      }, 1500);
     } catch (error) {
       console.error("Error creating booking:", error);
       toast.error("Failed to create booking.");
@@ -143,7 +161,11 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
             </p>
 
             <button
-              className="mt-4 w-full bg-gray-700 text-white py-2 rounded hover:bg-gray-800"
+              className={`mt-4 w-full bg-gray-700 text-white py-2 rounded hover:bg-gray-800 ${
+                isVenueManager
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-gray-700 text-white hover:bg-gray-800"
+              }`}
               onClick={handleBooking}
             >
               Book

@@ -85,6 +85,7 @@ const CreateVenueForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const payload = {
       ...formData,
       price: Number(formData.price),

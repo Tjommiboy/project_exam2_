@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Button from "../components/ui/Button";
 import LogoutButton from "./ui/LogoutButton";
@@ -9,6 +9,7 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isVenueManager, setVenueManager] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleAuthChange = () => {
@@ -20,6 +21,21 @@ function Header() {
     window.addEventListener("authChange", handleAuthChange);
     return () => window.removeEventListener("authChange", handleAuthChange);
   }, []);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    if (isMenuOpen && isMobile) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen, isMobile]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("profile"));
@@ -131,7 +147,10 @@ function Header() {
         </div>
 
         {isMobile && isMenuOpen && (
-          <div className="fixed top-16 right-0 w-1/2  bg-[#4E928A] shadow-lg z-50 flex flex-col items-start gap-2 px-4 py-6 md:hidden">
+          <div
+            className="fixed top-16 right-0 w-1/2  bg-[#4E928A] shadow-lg z-50 flex flex-col items-start gap-2 px-4 py-6 md:hidden"
+            ref={menuRef}
+          >
             {!loggedIn ? (
               <>
                 <NavLink to="/login" onClick={() => setIsMenuOpen(false)}>
