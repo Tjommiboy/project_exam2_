@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { deleteVenue } from "../../api/deleteVenue";
+import { VenueDelete } from "../../api/VenueDelete";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { bookingDelete } from "../../api/bookingDelete"; // Assuming you have a booking delete function
 
 function VenueCard({
   venue,
@@ -10,6 +11,8 @@ function VenueCard({
   onDelete,
   onClick,
   disableLink = false,
+  cardType = "venue",
+  booking,
 }) {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const navigate = useNavigate();
@@ -49,7 +52,7 @@ function VenueCard({
     if (!confirmed) return;
 
     try {
-      await deleteVenue(venue.id);
+      await VenueDelete(venue.id);
       toast.success("Venue deleted successfully");
       if (onDelete) {
         onDelete(venue.id);
@@ -113,19 +116,41 @@ function VenueCard({
       {showActions && (
         <div className="mt-1 flex gap-2 w-full">
           <button
-            className="bg-[#4E928A] text-white rounded  z-10 hover:bg-[#3d746e]"
+            className="bg-[#4E928A] text-white rounded z-10 hover:bg-[#3d746e]"
             onClick={(e) => {
               e.stopPropagation();
-              navigate(`/venues/${venue.id}/edit`);
+              if (cardType === "venue") {
+                navigate(`/venues/${venue.id}/edit`);
+              } else if (cardType === "booking") {
+                navigate(`/bookings/${booking.id}/edit`);
+              }
             }}
           >
             Edit
           </button>
           <button
             className="bg-[#4E928A] text-white rounded z-10 hover:bg-[#3d746e]"
-            onClick={(e) => {
+            onClick={async (e) => {
               e.stopPropagation();
-              handleDelete();
+              const confirmed = window.confirm(
+                `Are you sure you want to delete this ${cardType}?`
+              );
+              if (!confirmed) return;
+
+              try {
+                if (cardType === "venue") {
+                  await VenueDelete(venue.id);
+                  toast.success("Venue deleted successfully");
+                  onDelete?.(venue.id);
+                } else if (cardType === "booking") {
+                  await bookingDelete(booking.id); // you'll implement this
+                  toast.success("Booking deleted successfully");
+                  onDelete?.(booking.id);
+                }
+              } catch (error) {
+                console.error(`Failed to delete ${cardType}`, error);
+                toast.error(`Failed to delete ${cardType}`);
+              }
             }}
           >
             Delete

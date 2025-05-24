@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createBooking } from "../../api/CreateBooking";
+import { createBooking } from "../../api/VenueCreate";
 import { toast, ToastContainer } from "react-toastify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

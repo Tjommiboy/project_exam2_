@@ -8,6 +8,7 @@ export const LOGIN = `${API_BASE}/auth/login`;
 export const ALLBOOKINGS = `${API_BASE}/holidaze/bookings`;
 export const CREATE_BOOKING = `${ALLBOOKINGS}`;
 export const SINGLEBOOKINGS = `${API_BASE}/holidaze/bookings/<id>`;
+export const BOOKING_DELETE = `${ALLBOOKINGS}`;
 
 //Venues
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CreateVenueForm from "./CreateVenueForm";
 import { ALLVENUES } from "../../api/constants";
-import { editVenue } from "../../api/editVenue";
+import { editVenue } from "../../api/VenueEdit";
 import Spinner from "../../components/ui/Spinner";
 import { toast, ToastContainer } from "react-toastify";
 

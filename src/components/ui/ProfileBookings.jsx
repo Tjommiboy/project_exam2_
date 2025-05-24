@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { profileBookings } from "../../api/ProfileBooking";
+import VenueCard from "./venueCard";
+import { bookingDelete } from "../../api/bookingDelete";
+import { toast, ToastContainer } from "react-toastify";
+
 export default function ProfileBookings() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,6 +18,25 @@ export default function ProfileBookings() {
     fetchBookings();
   }, []);
 
+  const handleDeleteBooking = async (bookingId) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this booking?"
+    );
+    if (!confirmed) return;
+
+    try {
+      await bookingDelete(bookingId);
+      // Remove deleted booking from local state
+      setBookings((prevBookings) =>
+        prevBookings.filter((booking) => booking.id !== bookingId)
+      );
+      toast.success("Booking deleted successfully");
+    } catch (error) {
+      console.error("Failed to delete booking:", error);
+      alert("Failed to delete booking. Please try again later.");
+    }
+  };
+
   if (loading) {
     return <p>Loading your bookings...</p>;
   }
@@ -24,45 +47,25 @@ export default function ProfileBookings() {
 
   return (
     <div>
+      <ToastContainer position="top-center" autoClose={1000} />
       <div>
         <h2 className="text-xl font-bold mb-2 text-[#4E928A] mt-8">
           {" "}
           Bookings
         </h2>
       </div>
-      <ul className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4 text-[#4E928A]">
-        {bookings.map((booking) => {
-          const venue = booking.venue;
-
-          return (
-            <li key={booking.id} className="p-4  rounded shadow bg-amber-50">
-              <img
-                src={venue?.media?.[0]?.url || "https://placehold.co/300x200"}
-                alt={venue?.media?.[0]?.alt || "Venue image"}
-                className="w-full h-48 object-cover mb-2 rounded"
-              />
-              <h3 className="text-lg font-semibold">
-                {venue?.name || "Unknown venue"}
-              </h3>
-
-              <p>
-                <strong>From:</strong>{" "}
-                {new Date(booking.dateFrom).toLocaleDateString()}
-              </p>
-              <p>
-                <strong>To:</strong>{" "}
-                {new Date(booking.dateTo).toLocaleDateString()}
-              </p>
-              <p>
-                <strong>Guests:</strong> {booking.guests}
-              </p>
-              <p>
-                <strong>Location:</strong> {venue?.location?.city},{" "}
-                {venue?.location?.country}
-              </p>
-            </li>
-          );
-        })}
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {bookings.map((booking) => (
+          <li key={booking.id}>
+            <VenueCard
+              venue={booking.venue}
+              booking={booking}
+              showActions={true}
+              cardType="booking"
+              onDelete={handleDeleteBooking}
+            />
+          </li>
+        ))}
       </ul>
     </div>
   );
