@@ -48,7 +48,7 @@ const RegisterForm = () => {
 
   return (
     <div className="max-w-md mx-auto p-4">
-      <ToastContainer position="top-center" autoClose={3000} />
+      <ToastContainer position="top-center" autoClose={1000} />
       <div className="flex justify-center mb-4 ">
         <button
           onClick={() => setUserType("user")}
@@ -69,9 +69,9 @@ const RegisterForm = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <h2 className="text-xl font-bold mb-4 text-gray-500 placeholder-gray-100">
+        <h3 className="text-xl font-bold mb-4 text-[#4E928A] placeholder-gray-100">
           {userType === "venue" ? "Venue Manager" : "User"} Registration
-        </h2>
+        </h3>
 
         <input
           name="name"

@@ -70,9 +70,13 @@ function Header() {
     <header className="sticky top-0 z-50">
       <div className="bg-[#4E928A] px-6 py-4">
         <div className="flex justify-between items-center">
-          <div className={`${isMobile ? "flex-1 flex justify-center" : ""}`}>
+          <div
+            className={`${
+              isMobile ? "flex-1 flex justify-center" : ""
+            } holidaze-logo-bg`}
+          >
             <Link to="/">
-              <h1 className="text-white text-xl font-bold">Holidaze</h1>
+              <h1 className="text-amber-50 text-xl font-bold">Holidaze</h1>
             </Link>
           </div>
 

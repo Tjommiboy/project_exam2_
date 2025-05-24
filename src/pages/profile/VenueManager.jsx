@@ -7,12 +7,13 @@ import { authGuard } from "../../storage/authguard";
 import { loadProfile } from "../../storage/loadProfile";
 import { loadToken } from "../../storage/load";
 import { getProfileVenues } from "../../api/getProfileVenues";
-import VenueCard from "../../components/ui/venueCard";
+// import VenueCard from "../../components/ui/venueCard";
 import { toast, ToastContainer } from "react-toastify";
 import { NavLink } from "react-router-dom";
-import Button from "../../components/ui/Button";
+// import Button from "../../components/ui/Button";
 import { getVenueBookings } from "../../api/getVenueBookings";
 import { VenueDelete } from "../../api/VenueDelete";
+import VenueList from "../../components/ui/VenueList";
 
 const VenueManager = () => {
   const [profile, setProfile] = useState(null);
@@ -157,8 +158,18 @@ const VenueManager = () => {
           <ProfileUpdateForm profile={profile} onUpdate={handleUpdate} />
         </ProfileModal>
       </div>
-
-      <div className="w-full px-4 sm:px-6 max-w-7xl mx-auto">
+      <VenueList
+        venues={venues}
+        selectedVenue={selectedVenue}
+        bookings={bookings}
+        onVenueClick={(venue) => {
+          setSelectedVenue(venue);
+          handleVenueClick(venue);
+        }}
+        onDelete={handleDelete}
+        onBack={() => setSelectedVenue(null)}
+      />
+      {/* <div className="w-full px-4 sm:px-6 max-w-7xl mx-auto">
         <div className="bg-amber-50 rounded shadow">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4">
             <h3 className="font-bold text-[#4E928A] text-xl mb-4 sm:mb-0">
@@ -273,7 +284,7 @@ const VenueManager = () => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

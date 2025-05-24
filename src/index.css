@@ -80,3 +80,18 @@ button:hover {
   color: transparent;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
+
+.logo-text {
+  background-image: url("/public/images/Screenshot 2025-05-24 at 23.43.51.png"); /* your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* This makes the background show only inside the text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* For Firefox */
+  background-clip: text;
+  color: transparent;
+}
