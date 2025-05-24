@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CreateVenueForm from "../../components/ui/CreateVenueForm";
 import { createVenue } from "../../api/CreateVenue";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { useNavigate } from "react-router-dom";
 
 const CreateVenuePage = () => {
