@@ -79,7 +79,7 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
     };
 
     if (isVenueManager) {
-      toast.error("Venue managers cannot book venues.");
+      toast.error("Register a User Profile to book a venue");
       return;
     }
 
@@ -104,7 +104,7 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
 
   return (
     <div className="bg-amber-50 flex justify-center p-6 rounded-lg">
-      <ToastContainer position="top-right" autoClose={1500} />
+      <ToastContainer position="top-right" autoClose={2200} />
       <div className="bg-white p-6 rounded shadow-md w-80 text-sm">
         <div className="flex flex-col gap-4">
           <div className="flex gap-2 justify-center text-gray-500">
