@@ -14,7 +14,7 @@ const ProfileDetails = ({ profile, loading, onEdit }) => {
   return (
     <div>
       <div className="w-full md:w-1/2 ">
-        <div className="flex flex-col md:flex-row bg-amber-50 rounded-bl-[20px] rounded-br-[20px] rounded-tl-[20px]  md:rounded-tr-[20px] md:rounded-tl-[20px] md:rounded-br-[20px]  rounded-tr-[100px] shadow">
+        <div className="flex flex-col md:flex-row bg-amber-50 rounded-bl-[20px] rounded-br-[20px] rounded-tl-[20px]  md:rounded-tr-[20px] md:rounded-tl-[20px] md:rounded-br-[20px]  rounded-tr-[20px] shadow">
           <img
             src={profile.avatar?.url}
             alt={profile.avatar?.alt || "Avatar"}
