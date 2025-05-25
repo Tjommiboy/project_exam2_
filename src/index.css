@@ -22,8 +22,12 @@
 body {
   background-color: #d2f2ec;
   font-family: "Instrument Sans", sans-serif;
-  background-image: url("/public/images/bg_home.jpg");
+
   background-size: cover;
+}
+
+body.bg-home {
+  background-image: url("/images/bg_home.jpg"); /* adjust the path */
 }
 
 a {
@@ -73,14 +77,13 @@ button:hover {
   }
 }
 .image-text-hover:hover {
-  background-image: url("/images/bark.png");
+  background-image: url("/images/water2.png");
   background-size: cover;
-  background-position: 70% 10%;
+  background-position: 60% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .logo-text {
@@ -107,4 +110,10 @@ button:hover {
   background-clip: text;
   color: transparent;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.text-outline {
+  color: #fff; /* inner text color */
+  -webkit-text-stroke: 0.1px #8ddad1; /* outer stroke color and size */
+  text-stroke: 0.1px #000; /* for wider compatibility */
 }

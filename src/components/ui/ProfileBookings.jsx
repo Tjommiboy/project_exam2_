@@ -49,10 +49,7 @@ export default function ProfileBookings() {
     <div>
       <ToastContainer position="top-center" autoClose={1000} />
       <div>
-        <h2 className="text-xl font-bold mb-2 text-[#4E928A] mt-8">
-          {" "}
-          Bookings
-        </h2>
+        <h2 className="text-xl font-bold mb-2 mt-8 text-outline "> Bookings</h2>
       </div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {bookings.map((booking) => (

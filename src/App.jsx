@@ -10,10 +10,12 @@ import VenueManager from "./pages/profile/VenueManager";
 import CreateVenuePage from "./pages/createVenue/CreateVenue";
 import SingleVenue from "./pages/singleVenue/SingleVenue";
 import EditVenuePage from "./pages/editVenue/EditVenuePage";
+import BodyBackgroundHandler from "./components/ui/ BodyBackgroundHandler";
 
 function App() {
   return (
     <BrowserRouter>
+      <BodyBackgroundHandler />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

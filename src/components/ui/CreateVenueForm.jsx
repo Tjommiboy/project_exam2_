@@ -106,7 +106,7 @@ const CreateVenueForm = ({
       className="w-full max-w-[900px] flex flex-col md:flex-row p-4 mx-auto bg-amber-50 gap-4 rounded"
     >
       <div>
-        <h2 className="text-xl font-bold text-[#2b615b]">
+        <h2 className="text-xl font-bold text-[#4E928A]">
           {isEditMode ? "Edit Venue" : "Create Venue"}
         </h2>
 
