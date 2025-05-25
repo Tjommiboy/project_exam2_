@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { loadProfile } from "../../storage/loadProfile";
 import { useNavigate } from "react-router-dom";
+import { loadToken } from "../../storage/load";
 
 const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
   const getTodayDate = () => {
@@ -53,6 +54,7 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
       setNights(diffDays > 0 ? diffDays : 0);
     }
   }, [checkInDate, checkOutDate]);
+
   function isBookingAvailable(dateFrom, dateTo, bookings) {
     const newStart = new Date(dateFrom);
     const newEnd = new Date(dateTo);
@@ -71,15 +73,21 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
     })) || [];
 
   const handleBooking = async () => {
-    const bookingData = {
-      dateFrom: checkInDate,
-      dateTo: checkOutDate,
-      guests,
-      venueId,
-    };
+    const token = loadToken();
 
     if (isVenueManager) {
       toast.error("Register a User Profile to book a venue");
+      return;
+    }
+
+    if (!token) {
+      toast.error("You must be logged in to book a venue.");
+      // const shouldLogin = window.confirm(
+      //   "You must be logged in to book this venue. Do you want to log in now?"
+      // );
+      if (shouldLogin) {
+        navigate("/login");
+      }
       return;
     }
 
@@ -89,6 +97,13 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
       toast.error("Selected dates overlap with an existing booking.");
       return;
     }
+
+    const bookingData = {
+      dateFrom: checkInDate,
+      dateTo: checkOutDate,
+      guests,
+      venueId,
+    };
 
     try {
       await createBooking(bookingData);
@@ -108,33 +123,31 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
       <div className="bg-white p-6 rounded shadow-md w-80 text-sm">
         <div className="flex flex-col gap-4">
           <div className="flex gap-2 justify-center text-gray-500">
-            <div className="flex gap-2 justify-center text-gray-500">
-              <DatePicker
-                selected={checkInDate}
-                onChange={(date) => setCheckInDate(date)}
-                selectsStart
-                startDate={checkInDate}
-                endDate={checkOutDate}
-                minDate={new Date()}
-                excludeDateIntervals={bookedDateRanges}
-                dateFormat="yyyy-MM-dd"
-                placeholderText="Check-in"
-                className="border p-2 rounded w-full"
-              />
+            <DatePicker
+              selected={checkInDate}
+              onChange={(date) => setCheckInDate(date)}
+              selectsStart
+              startDate={checkInDate}
+              endDate={checkOutDate}
+              minDate={new Date()}
+              excludeDateIntervals={bookedDateRanges}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Check-in"
+              className="border p-2 rounded w-full"
+            />
 
-              <DatePicker
-                selected={checkOutDate}
-                onChange={(date) => setCheckOutDate(date)}
-                selectsEnd
-                startDate={checkInDate}
-                endDate={checkOutDate}
-                minDate={checkInDate}
-                excludeDateIntervals={bookedDateRanges}
-                dateFormat="yyyy-MM-dd"
-                placeholderText="Check-out"
-                className="border p-2 rounded w-full"
-              />
-            </div>
+            <DatePicker
+              selected={checkOutDate}
+              onChange={(date) => setCheckOutDate(date)}
+              selectsEnd
+              startDate={checkInDate}
+              endDate={checkOutDate}
+              minDate={checkInDate}
+              excludeDateIntervals={bookedDateRanges}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Check-out"
+              className="border p-2 rounded w-full"
+            />
           </div>
 
           <label htmlFor="Guests" className="text-gray-500 font-medium">
@@ -161,12 +174,13 @@ const BookingForm = ({ venueId, maxGuests, pricePerNight = 0, bookings }) => {
             </p>
 
             <button
-              className={`mt-4 w-full bg-gray-700 text-white py-2 rounded hover:bg-gray-800 ${
+              className={`mt-4 w-full text-white py-2 rounded ${
                 isVenueManager
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-gray-700 text-white hover:bg-gray-800"
+                  : "bg-gray-700 hover:bg-gray-800"
               }`}
               onClick={handleBooking}
+              disabled={isVenueManager}
             >
               Book
             </button>
