@@ -12,17 +12,41 @@ const RegisterForm = () => {
 
   const [userType, setUserType] = useState("user");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const validateUsername = (name) => {
+    const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+    return usernameRegex.test(name);
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*\d).{8,}$/;
+    return passwordRegex.test(password);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Client-side validation
+    if (!validateUsername(formData.name)) {
+      toast.error(
+        "Username must be 3–20 characters long and contain only letters, numbers, or underscores."
+      );
+      return;
+    }
+
+    if (!validatePassword(formData.password)) {
+      toast.error(
+        "Password must be at least 8 characters and contain at least one number."
+      );
+      return;
+    }
+
     setLoading(true);
-    setMessage("");
 
     const payload = {
       name: formData.name,
@@ -40,7 +64,19 @@ const RegisterForm = () => {
         onClose: () => (window.location.href = "/login"),
       });
     } catch (error) {
-      toast.error("Error: " + error.message);
+      // Show custom errors based on the API message
+      const message = error.message.toLowerCase();
+      let displayMessage = "Registration failed.";
+
+      if (message.includes("name")) {
+        displayMessage = "Username is already taken.";
+      } else if (message.includes("email")) {
+        displayMessage = "Email is already registered.";
+      } else {
+        displayMessage = error.message;
+      }
+
+      toast.error(displayMessage);
     } finally {
       setLoading(false);
     }
@@ -48,7 +84,7 @@ const RegisterForm = () => {
 
   return (
     <div className="max-w-md mx-auto p-4">
-      <ToastContainer position="top-center" autoClose={1000} />
+      <ToastContainer position="top-center" autoClose={1500} />
       <div className="flex justify-center mb-4 ">
         <button
           onClick={() => setUserType("user")}
@@ -81,6 +117,7 @@ const RegisterForm = () => {
           required
           className="block w-full mb-2 p-2 border rounded text-gray-500"
         />
+
         <input
           name="email"
           type="email"
@@ -90,6 +127,7 @@ const RegisterForm = () => {
           required
           className="block w-full mb-2 p-2 border rounded text-gray-500"
         />
+
         <input
           name="password"
           type="password"
@@ -97,9 +135,7 @@ const RegisterForm = () => {
           value={formData.password}
           onChange={handleChange}
           required
-          pattern="^(?=.*\d).{8,}$"
-          title="Password must be at least 8 characters long and include at least one number."
-          className="block w-full mb-2 p-2 border rounded text-gray-500"
+          className="block w-full mb-4 p-2 border rounded text-gray-500"
         />
 
         <button
@@ -112,8 +148,6 @@ const RegisterForm = () => {
             : "Register as " +
               (userType === "venue" ? "Venue Manager" : "User")}
         </button>
-
-        {message && <p className="text-red-500 mt-2">{message}</p>}
       </form>
     </div>
   );

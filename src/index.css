@@ -22,6 +22,8 @@
 body {
   background-color: #d2f2ec;
   font-family: "Instrument Sans", sans-serif;
+  background-image: url("/public/images/bg_home.jpg");
+  background-size: cover;
 }
 
 a {
@@ -71,7 +73,7 @@ button:hover {
   }
 }
 .image-text-hover:hover {
-  background-image: url("/images/DSC_3607.jpg");
+  background-image: url("/images/bark.png");
   background-size: cover;
   background-position: 70% 10%;
   -webkit-background-clip: text;
