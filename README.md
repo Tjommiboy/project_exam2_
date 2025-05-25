@@ -67,7 +67,7 @@
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/holidaze.git
+   git clone https://github.com/Tjommiboy/project_exam2_.git
    cd holidaze
    ```
 
