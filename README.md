@@ -6,7 +6,7 @@
 
 ## 📸 Live Demo
 
-> 🔗 [Link to live site]
+> 🔗 [unique-froyo-0a9eb1.netlify.app]
 
 ---
 
