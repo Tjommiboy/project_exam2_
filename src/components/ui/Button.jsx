@@ -16,7 +16,7 @@ function Button({
     active: "bg-[#e0f2f1] text-[#4E928A]",
     inactive:
       "bg-transparent text-[#e0f2f1] hover:bg-[#e0f2f1] hover:text-[#4E928A] ",
-    profileDetailActive: "hover:bg-[#3d746e] m-2",
+    profileDetailActive: "hover:bg-[#3d746e]  m-2",
     profileDetailInactive: "bg-[#4E928A] text-white  rounded",
   };
 

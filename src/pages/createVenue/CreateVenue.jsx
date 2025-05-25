@@ -13,7 +13,6 @@ const CreateVenuePage = () => {
     setIsSubmitting(true);
     try {
       const venue = await createVenue(formData);
-      console.log("Venue created:", venue);
 
       toast.success("Venue successfully created!", {
         onClose: () => {

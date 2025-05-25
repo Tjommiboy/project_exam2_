@@ -56,7 +56,7 @@ const VenueManager = () => {
     try {
       await VenueDelete(venueId);
       toast.success("Venue deleted successfully");
-      fetchVenues(); // refresh list after deletion
+      fetchVenues();
     } catch (error) {
       console.error("Failed to delete venue", error);
       toast.error("Failed to delete venue");

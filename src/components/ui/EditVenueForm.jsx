@@ -18,7 +18,7 @@ const EditVenuePage = () => {
       try {
         const res = await fetch(`${ALLVENUES}/${id}`);
         const data = await res.json();
-        console.log("Fetched venue data:", data);
+
         setVenueData(data.data);
       } catch (error) {
         console.error("Failed to fetch venue:", error);
@@ -33,7 +33,7 @@ const EditVenuePage = () => {
   const handleEditVenue = async (formData) => {
     try {
       const updatedData = await editVenue(id, formData);
-      console.log("Venue updated successfully:", updatedData);
+
       toast.success("Venue updated successfully!");
       setTimeout(() => {
         navigate(`/singleVenue/${id}`);

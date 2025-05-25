@@ -10,6 +10,6 @@ export async function getAllVenues(page = 1, limit = 20) {
   }
 
   const data = await response.json();
-  console.log("Fetched venue data:", data);
+
   return data; // Make sure this includes a .meta.total
 }

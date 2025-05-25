@@ -9,7 +9,6 @@ export const getProfile = async (name, accessToken) => {
     },
   });
   const result = await response.json();
-  console.log(result); // ✅ Now logs the actual JSON data
 
   return result;
 };

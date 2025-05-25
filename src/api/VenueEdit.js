@@ -21,7 +21,6 @@ export const editVenue = async (id, formData) => {
     }
 
     const updatedData = await response.json();
-    console.log("Venue updated successfully:", updatedData);
 
     // ✅ return the response data
     return updatedData;

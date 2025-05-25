@@ -37,7 +37,7 @@ const SingleVenue = () => {
       try {
         const response = await fetch(`${SINGLEVENUES}/${id}?_bookings=true`);
         const data = await response.json();
-        console.log("Fetched venue with bookings:", data);
+
         setVenue(data);
       } catch (error) {
         console.error("Error fetching venue:", error);
@@ -55,7 +55,7 @@ const SingleVenue = () => {
         <Spinner />
       ) : venue ? (
         <div className="flex flex-col lg:flex-row container justify-center m-auto gap-4 px-4">
-          <div className="w-full max-w-[810px] bg-amber-50">
+          <div className="w-full max-w-[810px] bg-amber-50 rounded-xl">
             <div className="relative w-full h-[400px]">
               <img
                 src={venue.data.media?.[imageIndex]?.url}

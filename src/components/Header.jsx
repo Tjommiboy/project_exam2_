@@ -75,8 +75,16 @@ function Header() {
               isMobile ? "flex-1 flex justify-center" : ""
             } holidaze-logo-bg`}
           >
-            <Link to="/">
-              <h1 className="text-amber-50 text-xl font-bold">Holidaze</h1>
+            <Link
+              to="/"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.location.href = "/";
+              }}
+            >
+              <h1 className="text-amber-50 text-xl font-bold transition-all duration-300 transform hover:-translate-x-1  image-text-hover">
+                Holidaze
+              </h1>
             </Link>
           </div>
 
@@ -152,7 +160,7 @@ function Header() {
 
         {isMobile && isMenuOpen && (
           <div
-            className="fixed top-16 right-0 w-1/2  bg-[#4E928A] shadow-lg z-50 flex flex-col items-start gap-2 px-4 py-6 md:hidden"
+            className="fixed top-16 right-0 w-1/2  bg-[#4E928A] rounded mt-8 shadow-lg z-50 flex flex-col items-start gap-2 px-4 py-6 md:hidden"
             ref={menuRef}
           >
             {!loggedIn ? (
