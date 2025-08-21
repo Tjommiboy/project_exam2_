@@ -13,7 +13,9 @@ export async function loginUser(payload) {
   console.log("Login data:", data);
   console.log(localStorage.getItem("accessToken"));
   if (!response.ok) {
-    throw new Error(data.message || "Login failed.");
+    throw new Error(
+      data.message || "Login failed. (email must contain @stud.noroff.no)"
+    );
   }
 
   return data;

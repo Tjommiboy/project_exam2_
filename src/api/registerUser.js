@@ -11,7 +11,9 @@ export async function registerUser(payload) {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Registration failed.");
+    throw new Error(
+      data.message || "Registration failed.E-mail must contain @stud.noroff.no"
+    );
   }
 
   return data;
