@@ -2,7 +2,8 @@
 
 **Holidaze** is a full-featured accommodation booking platform built with modern frontend technologies. Users can browse venues, make bookings, manage their profiles, and view booking history. Venue managers can also list, edit, or delete their venues.
 
----
+Register a user
+	•	Note: You must use a @stud.noroff.no email to register and log in successfully.
 
 ## 📸 Live Demo
 
