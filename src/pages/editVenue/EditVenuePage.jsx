@@ -1,5 +1,5 @@
 import React from "react";
-import EditVenueForm from "../../components/ui/EditVenueForm";
+import EditVenueForm from "../../components/ui/EditVenueForm.jsx";
 
 const EditVenuePage = () => {
   return <EditVenueForm />;
