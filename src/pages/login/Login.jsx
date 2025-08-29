@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { save } from "../../storage/save";
 import { getProfile } from "../../api/profileUser";
-
+import { FiInfo } from "react-icons/fi";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -64,7 +64,10 @@ const Login = () => {
       <ToastContainer autoClose={1000} />
       <form onSubmit={handleSubmit}>
         <h2 className="text-xl font-bold mb-4 text-[#4E928A]">Login</h2>
-
+        <span className="flex items-center text-sm text-gray-500 mb-1">
+          <FiInfo className="mr-1" /> Take note: Only @stud.noroff.no e-mails
+          are supported
+        </span>
         <input
           name="email"
           type="email"

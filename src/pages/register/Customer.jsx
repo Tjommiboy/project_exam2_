@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { registerUser } from "../../api/registerUser";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FiInfo } from "react-icons/fi";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -108,7 +109,10 @@ const RegisterForm = () => {
         <h3 className="text-xl font-bold mb-4 text-[#4E928A] placeholder-gray-100">
           {userType === "venue" ? "Venue Manager" : "User"} Registration
         </h3>
-
+        <span className="flex items-center text-sm text-gray-500 mb-1">
+          <FiInfo className="mr-1" /> Take note: Only @stud.noroff.no e-mails
+          are supported
+        </span>
         <input
           name="name"
           placeholder="Username"

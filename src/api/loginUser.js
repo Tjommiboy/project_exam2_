@@ -12,10 +12,9 @@ export async function loginUser(payload) {
   const data = await response.json();
   console.log("Login data:", data);
   console.log(localStorage.getItem("accessToken"));
+
   if (!response.ok) {
-    throw new Error(
-      data.message || "Login failed. (email must contain @stud.noroff.no)"
-    );
+    throw new Error(`Incorrect email or password. Please try again.`);
   }
 
   return data;
