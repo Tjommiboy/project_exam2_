@@ -29,7 +29,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div className="w-full">
-      <div className="flex justify-end md:hidden ml-2 px-4 mb-2">
+      <div className="flex justify-end md:hidden ml-2 px-2 mb-2">
         <button
           onClick={toggleMobileSearch}
           className="text-[#4E928A] ml-67  p-2 rounded"
