@@ -72,9 +72,6 @@ button:hover {
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 .image-text-hover:hover {
   background-image: url("/images/water2.png");
