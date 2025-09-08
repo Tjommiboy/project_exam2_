@@ -110,8 +110,8 @@ const RegisterForm = () => {
           {userType === "venue" ? "Venue Manager" : "User"} Registration
         </h3>
         <span className="flex items-center text-sm text-gray-500 mb-1">
-          <FiInfo className="mr-1" /> Take note: Only @stud.noroff.no e-mails
-          are supported
+          <FiInfo className="mr-1" /> Only yourname@stud.noroff.no e-mails are
+          supported
         </span>
         <input
           name="name"
@@ -145,7 +145,7 @@ const RegisterForm = () => {
         <button
           type="submit"
           disabled={loading}
-          className="bg-green-600 text-white px-4 py-2 rounded w-full"
+          className="bg-green-600 text-white px-4 py-2 rounded w-full hover:bg-green-700 transition duration-700 ease-in-out"
         >
           {loading
             ? "Registering..."
