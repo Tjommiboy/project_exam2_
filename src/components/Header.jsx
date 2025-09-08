@@ -83,7 +83,7 @@ function Header() {
                   window.location.href = "/";
                 }}
               >
-                <h1 className="text-amber-50 text-xl font-bold transition-all duration-300 transform hover:-translate-x-1  image-text-hover hover:scale-140">
+                <h1 className="text-amber-50 text-xl font-bold transition-all duration-300 transform hover:-translate-x-1  image-text-hover hover:scale-110">
                   Holidaze
                 </h1>
               </Link>
