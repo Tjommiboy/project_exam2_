@@ -14,7 +14,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        brand: "var(--brand-color)", // ✅ Correctly closed
+        brand: "var(--brand-color)",
       },
     },
   },
