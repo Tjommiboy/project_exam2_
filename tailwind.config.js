@@ -12,7 +12,11 @@ module.exports = {
         "2xl": "1536px",
       },
     },
-    extend: {},
+    extend: {
+      colors: {
+        brand: "var(--brand-color)", // ✅ Correctly closed
+      },
+    },
   },
   plugins: [],
 };

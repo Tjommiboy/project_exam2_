@@ -68,7 +68,7 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className=" bg-[#4E928A] px-6 py-4 ">
+      <div className=" bg-brand px-6 py-4 ">
         <div className="container mx-auto max-w-screen-xl">
           <div className=" flex justify-between items-center">
             <div
