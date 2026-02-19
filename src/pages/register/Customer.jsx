@@ -109,7 +109,7 @@ const RegisterForm = () => {
         <h3 className="text-xl font-bold mb-4 text-brand placeholder-gray-100">
           {userType === "venue" ? "Venue Manager" : "User"} Registration
         </h3>
-        <span className="flex items-center text-sm text-red-500 mb-1">
+        <span className="flex items-center text-sm text-important font-bold mb-1">
           <FiInfo className="mr-1" /> Only yourname@stud.noroff.no e-mails are
           supported
         </span>

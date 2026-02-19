@@ -64,7 +64,7 @@ const Login = () => {
       <ToastContainer autoClose={1000} />
       <form onSubmit={handleSubmit}>
         <h2 className="text-xl font-bold mb-4 text-brand">Login</h2>
-        <span className="flex items-center text-sm text-red-500 mb-1">
+        <span className="flex items-center text-sm text-important mb-1 font-bold">
           <FiInfo className="mr-1" /> Only yourname@stud.noroff.no e-mails are
           supported
         </span>
