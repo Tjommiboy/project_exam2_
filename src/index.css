@@ -15,7 +15,8 @@
 }
 @theme {
   --color-brand: #4e928a;
-  --color-important: #924e56;
+  --color-important: #d96a3b;
+  --color-background: #f2faf9;
 }
 .Holidaze-Green {
   color: var(--brand-color);

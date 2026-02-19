@@ -32,7 +32,7 @@ const SearchBar = ({ onSearch }) => {
       <div className="flex justify-end md:hidden ml-2 px-2 mb-2">
         <button
           onClick={toggleMobileSearch}
-          className="text-[#4E928A] ml-67  p-2 rounded"
+          className="text-[#4E928A] ml-67  p- rounded"
         >
           ☰
         </button>
@@ -44,7 +44,7 @@ const SearchBar = ({ onSearch }) => {
           <div className="relative">
             <button
               onClick={toggleDropdown}
-              className="flex items-center justify-between px-3 py-2 rounded bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#4E928A] hover:text-[#e0f2f1] w-full"
+              className="flex items-center justify-between px-3 py-2 rounded bg-transparent text-important border border-important hover:bg-important hover:text-[#e0f2f1] w-full"
             >
               <span>{selectedFilter || "Filter"}</span>
               <svg
@@ -63,13 +63,13 @@ const SearchBar = ({ onSearch }) => {
             </button>
 
             {isDropdownVisible && (
-              <div className="absolute left-0 mt-1 min-w-[150px] bg-white border border-[#4E928A] rounded-md z-10 shadow">
+              <div className="absolute left-0 mt-1 min-w-[150px] bg-white border border-important rounded-md z-10 shadow">
                 <ul>
                   {["Location", "Price Range", "Availability"].map((filter) => (
                     <li
                       key={filter}
                       onClick={() => handleFilterSelect(filter)}
-                      className="px-4 py-2 text-sm cursor-pointer text-[#4E928A] hover:bg-[#f0fdfa]"
+                      className="px-4 py-2 text-sm cursor-pointer text-important hover:bg-[#f0fdfa]"
                     >
                       {filter}
                     </li>
@@ -84,13 +84,13 @@ const SearchBar = ({ onSearch }) => {
             value={searchQuery}
             onChange={handleSearchInput}
             onKeyDown={handleKeyDown}
-            className="bg-transparent placeholder:text-[#4E928A] text-[#4E928A] font-semibold border border-[#4E928A] rounded-md px-4 py-2"
+            className="bg-transparent placeholder:text-important text-important font-semibold border border-important rounded-md px-4 py-2"
             placeholder="Search venues..."
           />
 
           <button
             onClick={handleSearch}
-            className="flex items-center justify-center gap-1 text-[#4E928A] border border-[#4E928A] hover:bg-[#4E928A] hover:text-[#e0f2f1] px-4 py-2 rounded"
+            className="flex items-center justify-center gap-1 text-important border border-important hover:bg-important hover:text-[#e0f2f1] px-4 py-2 rounded"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ const SearchBar = ({ onSearch }) => {
         <div className="relative">
           <button
             onClick={toggleDropdown}
-            className="flex items-center gap-1 px-3 py-2 rounded bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#4E928A] hover:text-[#e0f2f1]"
+            className="flex items-center gap-1 px-3 py-2 rounded bg-background border-2 text-important  border-important hover:bg-important hover:text-[#e0f2f1]"
           >
             <span>{selectedFilter || "Filter"}</span>
             <svg
@@ -133,13 +133,13 @@ const SearchBar = ({ onSearch }) => {
           </button>
 
           {isDropdownVisible && (
-            <div className="absolute left-0 mt-1 min-w-[150px] bg-white border border-[#4E928A] rounded-md z-10 shadow">
+            <div className="absolute left-0 mt-1 min-w-[150px] bg-white border border-important  rounded-md z-10 shadow">
               <ul>
                 {["Location", "Price Range", "Availability"].map((filter) => (
                   <li
                     key={filter}
                     onClick={() => handleFilterSelect(filter)}
-                    className="px-4 py-2 text-sm cursor-pointer text-[#4E928A] hover:bg-[#f0fdfa]"
+                    className="px-4 py-2 text-sm cursor-pointer text-important hover:bg-[#f0fdfa]"
                   >
                     {filter}
                   </li>
@@ -154,13 +154,22 @@ const SearchBar = ({ onSearch }) => {
           value={searchQuery}
           onChange={handleSearchInput}
           onKeyDown={handleKeyDown}
-          className="w-[500px] bg-transparent placeholder:text-[#4E928A] text-[#4E928A] font-semibold border border-[#4E928A] rounded-md px-4 py-2"
+          className="w-[500px] 
+        
+           placeholder:text-important
+            text-important text-lg font-semibold border-2
+      bg-background
+             border-important
+             rounded-md px-6 py-2
+          focus:outline-none 
+          focus:ring-0 
+        "
           placeholder="Search venues..."
         />
 
         <button
           onClick={handleSearch}
-          className="flex items-center gap-1 px-4 py-2 text-[#4E928A] border border-[#4E928A] hover:bg-[#4E928A] hover:text-[#e0f2f1] rounded"
+          className="flex items-center gap-1 px-4 py-2 bg-background text-important border-2 border-important hover:bg-important hover:text-[#e0f2f1] rounded"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
