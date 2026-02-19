@@ -57,7 +57,7 @@ function VenueCard({
   return (
     <div
       onClick={() => onClick?.(venue)}
-      className="flex flex-col  bg-white rounded-md p-4 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 hover:bg-amber-50"
+      className="flex flex-col  bg-background rounded-md p-4 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 hover:bg-amber-50"
     >
       {disableLink ? (
         cardContent
