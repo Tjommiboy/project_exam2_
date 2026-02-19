@@ -9,7 +9,7 @@ const override = {
 const Spinner = ({ loading }) => {
   return (
     <ClockLoader
-      color="#4E928A"
+      color="#f2faf9"
       loading={loading}
       cssOverride={override}
       size={100}
