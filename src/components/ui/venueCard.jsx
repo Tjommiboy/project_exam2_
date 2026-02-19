@@ -4,6 +4,15 @@ import { VenueDelete } from "../../api/VenueDelete";
 import { bookingDelete } from "../../api/bookingDelete";
 import { toast } from "react-toastify";
 
+const optimizeImageUrl = (url) => {
+  if (!url) return null;
+  if (url.includes("images.unsplash.com")) {
+    const base = url.split("?")[0];
+    return `${base}?w=600&q=60&fm=webp&fit=crop`;
+  }
+  return url;
+};
+
 function VenueCard({
   venue,
   showActions,
@@ -37,8 +46,8 @@ function VenueCard({
     <>
       <img
         src={
-          venue.media?.[0]?.url ||
-          "https://images.unsplash.com/photo-1678225105802-01949b1dff0d?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          optimizeImageUrl(venue.media?.[0]?.url) ||
+          "https://images.unsplash.com/photo-1678225105802-01949b1dff0d?w=600&q=60&fm=webp&fit=crop"
         }
         alt={venue.media?.[0]?.alt || venue.name}
         className="w-full h-48 object-cover mb-2 rounded"

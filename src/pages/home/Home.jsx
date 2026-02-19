@@ -79,7 +79,7 @@ function Home() {
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className="px-3 py-1 border rounded hover:bg-brand hover:text-white"
+          className="px-3 py-1 border-2 text-important border-important rounded hover:bg-important hover:text-white"
         >
           Prev
         </button>
@@ -95,8 +95,8 @@ function Home() {
               onClick={() => setCurrentPage(page)}
               className={`px-3 py-1 border rounded ${
                 currentPage === page
-                  ? "bg-brand text-white"
-                  : "hover:bg-[#e0f2f1] hover:text-brand"
+                  ? "bg-important border-important border-2 font-extrabold text-white "
+                  : "hover:bg-[#e0f2f1] border-2 border-brand font-semibold hover:text-brand text-brand"
               }`}
             >
               {page}
@@ -109,7 +109,7 @@ function Home() {
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
-          className="px-3 py-1 border rounded hover:bg-brand hover:text-white"
+          className="px-3 py-1 font-semibold text-important border-important border-2 rounded hover:bg-important  hover:text-white"
         >
           Next
         </button>
