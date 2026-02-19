@@ -78,9 +78,7 @@ const Profile = () => {
         onEdit={() => setIsModalOpen(true)}
       />
       <ProfileModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2 className="text-xl font-semibold mb-4 text-[#2b615b]">
-          Edit Profile
-        </h2>
+        <h2 className="text-xl font-semibold mb-4 text-brand">Edit Profile</h2>
         <ProfileUpdateForm profile={profile} onUpdate={handleUpdate} />
       </ProfileModal>
       <ProfileBookings />

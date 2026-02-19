@@ -5,22 +5,24 @@ function Button({
   className = "",
   variant = "ghost",
 }) {
-  const baseStyles = "px-4 py-2 rounded-md font-semibold transition";
+  const baseStyles =
+    "px-4 py-2 rounded-md font-semibold transition duration-200 appearance-none";
 
   const variantStyles = {
     primary: "bg-[#4E928A] text-white hover:bg-[#3b756e]",
-    outline: "hover:bg-[#e0f2f1] hover:text-[#4E928A]",
+    outline:
+      "bg-transparent text-[#4E928A] border border-[#4E928A] hover:bg-[#e0f2f1] hover:text-[#4E928A]",
     ghost:
       "bg-transparent text-[#e0f2f1] hover:bg-[#e0f2f1] hover:text-[#4E928A]",
     discriptive: "rounded-md font-semibold transition",
     active: "bg-[#e0f2f1] text-[#4E928A]",
     inactive:
-      "bg-transparent text-[#e0f2f1] hover:bg-[#e0f2f1] hover:text-[#4E928A] ",
-    profileDetailActive: "hover:bg-[#3d746e]  m-2",
-    profileDetailInactive: "bg-[#4E928A] text-white  rounded",
+      "bg-transparent text-[#e0f2f1] hover:bg-[#e0f2f1] hover:text-[#4E928A]",
+    profileDetailActive: "hover:bg-[#3d746e] m-2",
+    profileDetailInactive: "bg-[#4E928A] text-white rounded",
   };
 
-  const fallbackVariant = "ghost";
+  const fallbackVariant = "primary";
 
   return (
     <button
@@ -34,4 +36,5 @@ function Button({
     </button>
   );
 }
+
 export default Button;

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import CreateVenueForm from "./CreateVenueForm";
 import { ALLVENUES } from "../../api/constants";
 import { editVenue } from "../../api/VenueEdit";
-import Spinner from "../../components/ui/Spinner";
+import Spinner from "./Spinner";
 import { toast, ToastContainer } from "react-toastify";
 
 const EditVenuePage = () => {

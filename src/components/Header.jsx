@@ -68,7 +68,7 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className=" bg-[#4E928A] px-6 py-4 ">
+      <div className=" bg-brand px-6 py-4 ">
         <div className="container mx-auto max-w-screen-xl">
           <div className=" flex justify-between items-center">
             <div
@@ -83,7 +83,7 @@ function Header() {
                   window.location.href = "/";
                 }}
               >
-                <h1 className="text-amber-50 text-xl font-bold transition-all duration-300 transform hover:-translate-x-1  image-text-hover hover:scale-140">
+                <h1 className="text-amber-50 text-xl font-bold transition-all duration-300 transform hover:-translate-x-1  image-text-hover hover:scale-110">
                   Holidaze
                 </h1>
               </Link>

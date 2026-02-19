@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { registerUser } from "../../api/registerUser";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FiInfo } from "react-icons/fi";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -88,16 +89,16 @@ const RegisterForm = () => {
       <div className="flex justify-center mb-4 ">
         <button
           onClick={() => setUserType("user")}
-          className={`px-4 py-2 rounded-l text-[#4E928A] mr-2 ${
-            userType === "user" ? "bg-[#4E928A] text-white" : "bg-gray-100"
+          className={`px-4 py-2 rounded-l text-brand mr-2 ${
+            userType === "user" ? "bg-brand text-white" : "bg-gray-100"
           }`}
         >
           Regular User
         </button>
         <button
           onClick={() => setUserType("venue")}
-          className={`px-4 py-2 rounded-r text-[#4E928A] ${
-            userType === "venue" ? "bg-[#4E928A] text-white" : "bg-gray-200"
+          className={`px-4 py-2 rounded-r text-brand ${
+            userType === "venue" ? "bg-brand text-white" : "bg-gray-200"
           }`}
         >
           Venue Manager
@@ -105,10 +106,13 @@ const RegisterForm = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <h3 className="text-xl font-bold mb-4 text-[#4E928A] placeholder-gray-100">
+        <h3 className="text-xl font-bold mb-4 text-brand placeholder-gray-100">
           {userType === "venue" ? "Venue Manager" : "User"} Registration
         </h3>
-
+        <span className="flex items-center text-sm text-important font-bold mb-1">
+          <FiInfo className="mr-1" /> Only yourname@stud.noroff.no e-mails are
+          supported
+        </span>
         <input
           name="name"
           placeholder="Username"
@@ -141,7 +145,7 @@ const RegisterForm = () => {
         <button
           type="submit"
           disabled={loading}
-          className="bg-green-600 text-white px-4 py-2 rounded w-full"
+          className="bg-green-600 text-white px-4 py-2 rounded w-full hover:bg-green-700 transition duration-700 ease-in-out"
         >
           {loading
             ? "Registering..."

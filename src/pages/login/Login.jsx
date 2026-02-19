@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { save } from "../../storage/save";
 import { getProfile } from "../../api/profileUser";
-
+import { FiInfo } from "react-icons/fi";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -63,8 +63,11 @@ const Login = () => {
     <div className="max-w-md mx-auto p-4">
       <ToastContainer autoClose={1000} />
       <form onSubmit={handleSubmit}>
-        <h2 className="text-xl font-bold mb-4 text-[#4E928A]">Login</h2>
-
+        <h2 className="text-xl font-bold mb-4 text-brand">Login</h2>
+        <span className="flex items-center text-sm text-important mb-1 font-bold">
+          <FiInfo className="mr-1" /> Only yourname@stud.noroff.no e-mails are
+          supported
+        </span>
         <input
           name="email"
           type="email"
@@ -89,7 +92,7 @@ const Login = () => {
 
         <button
           type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded w-full"
+          className="bg-green-600 text-white px-4 py-2 rounded w-full  hover:bg-green-700 transition duration-700 ease-in-out"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}
