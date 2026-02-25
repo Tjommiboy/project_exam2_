@@ -4,7 +4,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -12,6 +12,25 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+@theme {
+  --color-brand: #4e928a;
+  --color-important: #d96a3b;
+  --color-background: #f2faf9;
+}
+.Holidaze-Green {
+  color: var(--brand-color);
+}
+
+body {
+  background-color: #d2f2ec;
+  font-family: "Instrument Sans", sans-serif;
+
+  background-size: cover;
+}
+
+body.bg-home {
+  background-image: url("/images/bg_home.jpg"); /* adjust the path */
 }
 
 a {
@@ -23,36 +42,29 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+h2 {
+  font-size: 36px;
+}
+h3 {
+  font-size: 24px;
+}
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: 5px;
+
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -63,7 +75,45 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+.image-text-hover:hover {
+  background-image: url("/images/water2.png");
+  background-size: cover;
+  background-position: 60% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo-text {
+  background-image: url("/public/images/Screenshot 2025-05-24 at 23.43.51.png"); /* your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* This makes the background show only inside the text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* For Firefox */
+  background-clip: text;
+  color: transparent;
+}
+
+.profileDetailActive:hover .image-text-hover {
+  background-image: url("/images/DSC_3607.jpg");
+  background-size: cover;
+  background-position: 70% 10%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.text-outline {
+  color: #fff; /* inner text color */
+  -webkit-text-stroke: 0.1px #8ddad1; /* outer stroke color and size */
+  text-stroke: 0.1px #000; /* for wider compatibility */
 }
