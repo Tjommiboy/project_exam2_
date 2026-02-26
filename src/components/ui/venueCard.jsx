@@ -95,13 +95,13 @@ function VenueCard({
       {showActions && (
         <div className="mt-1 flex gap-2 w-full">
           <button
-            className="bg-[#4E928A] text-white px-3 py-1 rounded hover:bg-[#3d746e]"
+            className="bg-important text-white px-3 py-1 rounded hover:bg-importantHover"
             onClick={handleEdit}
           >
             Edit
           </button>
           <button
-            className="bg-[#4E928A] text-white px-3 py-1 rounded hover:bg-[#3d746e]"
+            className="bg-important text-white px-3 py-1 rounded hover:bg-importantHover"
             onClick={(e) => {
               e.stopPropagation();
               onDelete?.(); // call parent handler

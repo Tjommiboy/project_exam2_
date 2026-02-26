@@ -140,7 +140,7 @@ const VenueManager = () => {
   return (
     <>
       <ToastContainer autoClose={1000} />
-      <div className="container mx-auto p-4 max-w-7xl">
+      <div className="container mx-auto p-6 max-w-7xl">
         <ProfileDetails
           profile={profile}
           loading={loading}
@@ -150,7 +150,7 @@ const VenueManager = () => {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
         >
-          <h2 className="text-xl font-semibold mb-4 text-[#2b615b]">
+          <h2 className="text-xl font-semibold mb-4 text-important">
             Edit Profile
           </h2>
           <ProfileUpdateForm profile={profile} onUpdate={handleUpdate} />

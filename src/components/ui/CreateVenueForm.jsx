@@ -207,7 +207,7 @@ const CreateVenueForm = ({
 
         <button
           type="submit"
-          className="bg-important text-white px-4 py-2 rounded hover:bg-[#3d746e] m-2"
+          className="bg-important text-white px-4 py-2 rounded hover:bg-importantHover m-2"
         >
           {isEditMode ? "Update Venue" : "Submit Venue"}
         </button>

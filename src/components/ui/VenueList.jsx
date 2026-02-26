@@ -14,13 +14,13 @@ const VenueList = ({
     <div className="w-full px-4 sm:px-6 max-w-7xl mx-auto">
       <div className="bg-amber-50 rounded shadow">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4">
-          <h3 className="font-bold text-[#4E928A] text-xl mb-4 sm:mb-0">
+          <h3 className="font-bold text-important text-xl mb-4 sm:mb-0">
             Venues
           </h3>
           <NavLink to="/createVenue" className="w-full sm:w-auto">
             {({ isActive }) => (
               <Button
-                className="w-full sm:w-auto bg-[#4E928A] text-white rounded hover:bg-[#3d746e]"
+                className="w-full sm:w-auto bg-important text-white rounded hover:bg-importantHover"
                 variant={
                   isActive ? "profileDetailActive" : "profileDetailInactive"
                 }
