@@ -44,7 +44,7 @@ const SearchBar = ({ onSearch }) => {
           <div className="relative">
             <button
               onClick={toggleDropdown}
-              className="flex items-center justify-between px-3 py-2 rounded bg-transparent text-important border border-important hover:bg-important hover:text-[#e0f2f1] w-full"
+              className="flex items-center justify-between px-3 py-2 rounded bg-background text-important border-2 border-important hover:bg-important hover:text-[#e0f2f1] w-full"
             >
               <span>{selectedFilter || "Filter"}</span>
               <svg
@@ -63,13 +63,13 @@ const SearchBar = ({ onSearch }) => {
             </button>
 
             {isDropdownVisible && (
-              <div className="absolute left-0 mt-1 min-w-[150px] bg-white border border-important rounded-md z-10 shadow">
+              <div className="absolute left-0 mt-1 min-w-[150px] bg-white  border-important rounded-md z-10 shadow">
                 <ul>
                   {["Location", "Price Range", "Availability"].map((filter) => (
                     <li
                       key={filter}
                       onClick={() => handleFilterSelect(filter)}
-                      className="px-4 py-2 text-sm cursor-pointer text-important hover:bg-[#f0fdfa]"
+                      className=" px-4 py-2 text-sm cursor-pointer  text-important hover:bg-[#f0fdfa]"
                     >
                       {filter}
                     </li>
@@ -84,13 +84,13 @@ const SearchBar = ({ onSearch }) => {
             value={searchQuery}
             onChange={handleSearchInput}
             onKeyDown={handleKeyDown}
-            className="bg-transparent placeholder:text-important text-important font-semibold border border-important rounded-md px-4 py-2"
+            className="bg-background placeholder:text-important text-important font-semibold border-2 border-important rounded-md px-4 py-2"
             placeholder="Search venues..."
           />
 
           <button
             onClick={handleSearch}
-            className="flex items-center justify-center gap-1 text-important border border-important hover:bg-important hover:text-[#e0f2f1] px-4 py-2 rounded"
+            className="flex items-center justify-center gap-1 bg-background text-important border-2 border-important hover:bg-important hover:text-[#e0f2f1] px-4 py-2 rounded shadow-2xl"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ const SearchBar = ({ onSearch }) => {
         <div className="relative">
           <button
             onClick={toggleDropdown}
-            className="flex items-center gap-1 px-3 py-2 rounded bg-background border-2 text-important  border-important hover:bg-important hover:text-[#e0f2f1]"
+            className="flex items-center gap-1 px-3 py-2 rounded bg-background border-2 text-important  border-important hover:bg-important hover:text-[#e0f2f1]  shadow-md "
           >
             <span>{selectedFilter || "Filter"}</span>
             <svg
@@ -133,7 +133,7 @@ const SearchBar = ({ onSearch }) => {
           </button>
 
           {isDropdownVisible && (
-            <div className="absolute left-0 mt-1 min-w-[150px] bg-white border border-important  rounded-md z-10 shadow">
+            <div className="absolute left-0 mt-1 min-w-[150px] bg-white border border-important  rounded-md z-10  shadow-md ">
               <ul>
                 {["Location", "Price Range", "Availability"].map((filter) => (
                   <li
@@ -163,13 +163,14 @@ const SearchBar = ({ onSearch }) => {
              rounded-md px-6 py-2
           focus:outline-none 
           focus:ring-0 
+          shadow-md
         "
           placeholder="Search venues..."
         />
 
         <button
           onClick={handleSearch}
-          className="flex items-center gap-1 px-4 py-2 bg-background text-important border-2 border-important hover:bg-important hover:text-[#e0f2f1] rounded"
+          className="flex items-center gap-1 px-4 py-2 bg-background text-important border-2 border-important hover:bg-important hover:text-[#e0f2f1] rounded shadow-md"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
