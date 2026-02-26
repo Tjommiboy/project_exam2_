@@ -36,7 +36,7 @@ const ProfileDetails = ({ profile, loading, onEdit }) => {
             <div className="flex justify-end">
               <button
                 variant="ghost"
-                className="bg-important text-white rounded hover:bg-importantHover   mt-2"
+                className="bg-important text-white rounded hover:bg-importantHover mt-2"
                 onClick={onEdit}
               >
                 Edit Profile
