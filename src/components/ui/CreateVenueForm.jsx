@@ -106,7 +106,7 @@ const CreateVenueForm = ({
       className="w-full max-w-[900px] flex flex-col md:flex-row p-4 mx-auto bg-amber-50 gap-4 rounded"
     >
       <div>
-        <h2 className="text-xl font-bold text-brand">
+        <h2 className="text-xl font-bold text-important">
           {isEditMode ? "Edit Venue" : "Create Venue"}
         </h2>
 
@@ -116,7 +116,7 @@ const CreateVenueForm = ({
           onChange={handleChange}
           placeholder="Venue Name"
           required
-          className="w-full border text-brand px-3 py-2 rounded m-1"
+          className="w-full border text-important px-3 py-2 rounded m-1"
         />
 
         <textarea
@@ -125,7 +125,7 @@ const CreateVenueForm = ({
           onChange={handleChange}
           placeholder="Description"
           required
-          className="w-full border text-brand px-3 py-2 rounded m-1"
+          className="w-full border text-important px-3 py-2 rounded m-1"
         />
 
         <input
@@ -133,14 +133,14 @@ const CreateVenueForm = ({
           value={formData.media[0].url}
           onChange={handleChange}
           placeholder="Image URL"
-          className="w-full border text-brand px-3 py-2 rounded m-1"
+          className="w-full border text-important px-3 py-2 rounded m-1"
         />
         <input
           name="media.alt"
           value={formData.media[0].alt}
           onChange={handleChange}
           placeholder="Image Alt Text"
-          className="w-full border text-brand px-3 py-2 rounded m-1"
+          className="w-full border text-important px-3 py-2 rounded m-1"
         />
 
         <input
@@ -150,7 +150,7 @@ const CreateVenueForm = ({
           onChange={handleChange}
           placeholder="Price"
           required
-          className="w-full border text-brand px-3 py-2 rounded m-1"
+          className="w-full border text-important px-3 py-2 rounded m-1"
         />
 
         <input
@@ -160,7 +160,7 @@ const CreateVenueForm = ({
           onChange={handleChange}
           placeholder="Max Guests"
           required
-          className="w-full border text-brand px-3 py-2 rounded m-1"
+          className="w-full border text-important px-3 py-2 rounded m-1"
         />
 
         <input
@@ -169,10 +169,10 @@ const CreateVenueForm = ({
           value={formData.rating}
           onChange={handleChange}
           placeholder="Rating (optional)"
-          className="w-full border text-brand px-3 py-2 rounded m-1"
+          className="w-full border text-important px-3 py-2 rounded m-1"
         />
 
-        <fieldset className="border p-3 rounded text-brand m-1">
+        <fieldset className="border p-3 rounded text-important m-1">
           <legend className="text-sm font-medium">Amenities</legend>
           {["wifi", "parking", "breakfast", "pets"].map((key) => (
             <label key={key} className="block">
@@ -189,7 +189,7 @@ const CreateVenueForm = ({
         </fieldset>
       </div>
       <div>
-        <fieldset className="border p-3 rounded text-brand mt-1 md:mt-11">
+        <fieldset className="border p-3 rounded text-important mt-1 md:mt-11">
           <legend className="text-sm font-medium">Location</legend>
           {["address", "city", "zip", "country", "continent", "lat", "lng"].map(
             (key) => (
@@ -207,7 +207,7 @@ const CreateVenueForm = ({
 
         <button
           type="submit"
-          className="bg-brand text-white px-4 py-2 rounded hover:bg-[#3d746e] m-2"
+          className="bg-important text-white px-4 py-2 rounded hover:bg-importantHover m-2"
         >
           {isEditMode ? "Update Venue" : "Submit Venue"}
         </button>

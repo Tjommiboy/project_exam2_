@@ -28,7 +28,7 @@ const ProfileDetails = ({ profile, loading, onEdit }) => {
           />
           <div className="flex flex-col justify-between p-4 md:w-1/2">
             <div>
-              <h3 className="text-xl font-bold text-[#4E928A]">
+              <h3 className="text-xl font-bold text-important">
                 {profile.name}
               </h3>
               <p className="text-gray-500 mb-2">{profile.bio}</p>
@@ -36,7 +36,7 @@ const ProfileDetails = ({ profile, loading, onEdit }) => {
             <div className="flex justify-end">
               <button
                 variant="ghost"
-                className="bg-[#4E928A] text-white rounded hover:bg-[#3d746e] mt-2"
+                className="bg-important text-white rounded hover:bg-importantHover   mt-2"
                 onClick={onEdit}
               >
                 Edit Profile

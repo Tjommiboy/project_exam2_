@@ -96,7 +96,7 @@ function Home() {
               className={`px-3 py-1 border rounded ${
                 currentPage === page
                   ? "bg-important border-important border-2 font-extrabold text-white "
-                  : "hover:bg-[#e0f2f1] border-2 border-brand font-semibold hover:text-brand text-brand"
+                  : "hover:bg-cardhover border-2 border-important font-semibold hover:text-important text-important"
               }`}
             >
               {page}
